@@ -29,31 +29,39 @@ type Props = {
   eventId: string
 }
 
-const TABS = [
+const TABS_DEFAULT = [
   { id: 'about', label: '🎯 活動介紹', emoji: '🎯' },
   { id: 'price', label: '💰 票價說明', emoji: '💰' },
   { id: 'coffee', label: '☕ 咖啡品鑑', emoji: '☕' },
   { id: 'register', label: '📝 立即報名', emoji: '📝' },
 ] as const
 
-type TabId = typeof TABS[number]['id']
+const TAB_LIVE = { id: 'live', label: '📺 直播', emoji: '📺' } as const
+
+type TabId = 'about' | 'price' | 'coffee' | 'register' | 'live'
 
 export default function EventTabs(props: Props) {
   const { event, registeredCount, remaining, isFull, myReg, user, onsitePriceNow, onlinePrice, coffees, startDateStr, eventId } = props
-  const [tab, setTab] = useState<TabId>(myReg ? 'register' : 'about')
+
+  const isLive = event.mux_status === 'active' && event.mux_playback_id
+  const TABS: { id: TabId; label: string; emoji: string }[] = isLive && myReg
+    ? [TAB_LIVE, ...TABS_DEFAULT]
+    : [...TABS_DEFAULT]
+
+  const [tab, setTab] = useState<TabId>(isLive && myReg ? 'live' : (myReg ? 'register' : 'about'))
 
   return (
     <div>
       {/* Tab Nav — 大顆好按 */}
-      <nav className="sticky top-0 z-10 -mx-2 mb-6 grid grid-cols-4 gap-1 rounded-2xl bg-zinc-100 p-1.5 shadow-sm">
+      <nav className={`sticky top-0 z-10 -mx-2 mb-6 grid gap-1 rounded-2xl bg-zinc-100 p-1.5 shadow-sm ${TABS.length === 5 ? 'grid-cols-5' : 'grid-cols-4'}`}>
         {TABS.map(t => (
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
             className={`rounded-xl px-2 py-3 text-base font-semibold transition ${
               tab === t.id
-                ? 'bg-amber-600 text-white shadow-md'
-                : 'text-zinc-700 hover:bg-white'
+                ? (t.id === 'live' ? 'animate-pulse bg-red-600 text-white shadow-md' : 'bg-amber-600 text-white shadow-md')
+                : (t.id === 'live' ? 'bg-red-100 text-red-700' : 'text-zinc-700 hover:bg-white')
             }`}
           >
             <span className="text-2xl">{t.emoji}</span>
@@ -61,6 +69,41 @@ export default function EventTabs(props: Props) {
           </button>
         ))}
       </nav>
+
+      {tab === 'live' && (
+        <section className="space-y-4">
+          <header>
+            <div className="flex items-center gap-3">
+              <span className="inline-flex h-3 w-3 animate-pulse rounded-full bg-red-600"></span>
+              <h2 className="text-3xl font-bold text-zinc-900">直播中</h2>
+            </div>
+            <p className="mt-2 text-lg text-zinc-700">您正在看林博的現場 · 一邊看一邊在底下打字送出您的觀察</p>
+          </header>
+
+          <div className="overflow-hidden rounded-2xl border-2 border-zinc-800 bg-black shadow-lg">
+            <iframe
+              src={`https://player.mux.com/${event.mux_playback_id}?autoplay=muted&primary-color=%23f59e0b`}
+              className="aspect-video w-full"
+              allowFullScreen
+              allow="autoplay; encrypted-media; picture-in-picture"
+            />
+          </div>
+
+          <div className="rounded-xl border-2 border-amber-300 bg-amber-50 p-5">
+            <p className="text-lg font-bold text-amber-900">💬 把您的觀察打字送出</p>
+            <p className="mt-2 text-base text-amber-800">
+              覺得哪檔股票可能會跌？一句話送出，AI 會把全場 N 個人的觀察整合成排行榜。
+            </p>
+            <a
+              href={`/host/${eventId}/control`}
+              target="_blank"
+              className="mt-3 inline-block rounded-xl bg-amber-600 px-5 py-3 text-lg font-bold text-white hover:bg-amber-700"
+            >
+              開啟觀察輸入面板 →
+            </a>
+          </div>
+        </section>
+      )}
 
       {/* === Tab 1：活動介紹 === */}
       {tab === 'about' && (
@@ -379,7 +422,19 @@ export default function EventTabs(props: Props) {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-lg font-bold text-zinc-800">⑤ 想跟我們說的話（可空）</label>
+                  <label className="mb-2 block text-lg font-bold text-zinc-800">⑤ LINE ID（選填）</label>
+                  <input
+                    name="line_id"
+                    type="text"
+                    defaultValue={myReg.line_id || ''}
+                    placeholder="例：linbo_friends"
+                    className="w-full rounded-xl border-2 border-zinc-300 bg-white px-4 py-3 text-lg"
+                  />
+                  <p className="mt-2 text-base text-zinc-600">方便活動後我們建群、寄活動花絮給您</p>
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-lg font-bold text-zinc-800">⑥ 想跟我們說的話（可空）</label>
                   <textarea
                     name="notes"
                     rows={3}
@@ -471,7 +526,18 @@ export default function EventTabs(props: Props) {
               </div>
 
               <div>
-                <label className="mb-2 block text-lg font-bold text-zinc-800">⑤ 想跟我們說的話（可空）</label>
+                <label className="mb-2 block text-lg font-bold text-zinc-800">⑤ LINE ID（選填）</label>
+                <input
+                  name="line_id"
+                  type="text"
+                  placeholder="例：linbo_friends"
+                  className="w-full rounded-xl border-2 border-zinc-300 bg-white px-4 py-3 text-lg"
+                />
+                <p className="mt-2 text-base text-zinc-600">方便活動後我們建群、寄活動花絮給您</p>
+              </div>
+
+              <div>
+                <label className="mb-2 block text-lg font-bold text-zinc-800">⑥ 想跟我們說的話（可空）</label>
                 <textarea
                   name="notes"
                   rows={3}

@@ -12,7 +12,15 @@ export default async function HomePage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
       <div className="space-y-6">
-        <p className="text-sm font-medium text-amber-600">群眾智慧 × AI 共創座談會</p>
+        <div className="flex items-center gap-4">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-amber-100 to-teal-100 text-2xl font-bold text-amber-700 shadow-sm md:h-20 md:w-20 md:text-3xl">
+            林博
+          </div>
+          <div>
+            <p className="text-base font-bold text-zinc-900 md:text-lg">林博</p>
+            <p className="text-xs font-medium text-amber-600 md:text-sm">群眾智慧 × AI 共創座談會</p>
+          </div>
+        </div>
         <h1 className="text-4xl font-bold leading-tight md:text-5xl">
           一起找出那顆<br />
           <span className="text-amber-600">會墜落的星</span>

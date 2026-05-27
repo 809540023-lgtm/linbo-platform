@@ -1,4 +1,4 @@
-// 處理報名表單提交（含票種）
+// 處理報名表單提交（含票種 + LINE ID）
 import { createClient, createAdminClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 
@@ -13,6 +13,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
   const referrer_name = String(form.get('referrer_name') || '').trim()
   const referrer_relation = String(form.get('referrer_relation') || '').trim() || null
   const attendee_phone = String(form.get('attendee_phone') || '').trim() || null
+  const line_id = String(form.get('line_id') || '').trim() || null
   const notes = String(form.get('notes') || '').trim() || null
 
   if (!referrer_name) {
@@ -22,7 +23,6 @@ export async function POST(req: Request, { params }: { params: { id: string } })
     return NextResponse.redirect(`${origin}/events/${params.id}?error=invalid_ticket`, 303)
   }
 
-  // 檢查名額
   const admin = createAdminClient()
   const { data: event } = await admin.from('events').select('max_attendees').eq('id', params.id).single()
   if (event?.max_attendees) {
@@ -32,8 +32,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
     }
   }
 
-  // 票價計算（記錄報名當下的票價）
-  let price_quoted = 600 // 線上預設
+  let price_quoted = 600
   if (ticket_type === 'onsite') {
     const { count: onsiteN } = await admin.from('registrations')
       .select('*', { count: 'exact', head: true }).eq('event_id', params.id).eq('ticket_type', 'onsite')
@@ -49,6 +48,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
     referrer_name,
     referrer_relation,
     attendee_phone,
+    line_id,
     notes,
   }, { onConflict: 'event_id,user_id' })
 
