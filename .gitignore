@@ -1,7 +1,14 @@
 node_modules
 .next
+.env
 .env.local
 .env*.local
 .DS_Store
 *.log
 .vercel
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
