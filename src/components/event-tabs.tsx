@@ -30,15 +30,16 @@ type Props = {
 }
 
 const TABS_DEFAULT = [
-  { id: 'about', label: '🎯 活動介紹', emoji: '🎯' },
-  { id: 'price', label: '💰 票價說明', emoji: '💰' },
-  { id: 'coffee', label: '☕ 咖啡品鑑', emoji: '☕' },
-  { id: 'register', label: '📝 立即報名', emoji: '📝' },
+  { id: 'about', label: '🎯 介紹', emoji: '🎯' },
+  { id: 'price', label: '💰 票價', emoji: '💰' },
+  { id: 'coffee', label: '☕ 咖啡', emoji: '☕' },
+  { id: 'dessert', label: '🍰 甜點', emoji: '🍰' },
+  { id: 'register', label: '📝 報名', emoji: '📝' },
 ] as const
 
 const TAB_LIVE = { id: 'live', label: '📺 直播', emoji: '📺' } as const
 
-type TabId = 'about' | 'price' | 'coffee' | 'register' | 'live'
+type TabId = 'about' | 'price' | 'coffee' | 'dessert' | 'register' | 'live'
 
 export default function EventTabs(props: Props) {
   const { event, registeredCount, remaining, isFull, myReg, user, onsitePriceNow, onlinePrice, coffees, startDateStr, eventId } = props
@@ -53,7 +54,9 @@ export default function EventTabs(props: Props) {
   return (
     <div>
       {/* Tab Nav — 大顆好按 */}
-      <nav className={`sticky top-0 z-10 -mx-2 mb-6 grid gap-1 rounded-2xl bg-zinc-100 p-1.5 shadow-sm ${TABS.length === 5 ? 'grid-cols-5' : 'grid-cols-4'}`}>
+      <nav className={`sticky top-0 z-10 -mx-2 mb-6 grid gap-1 rounded-2xl bg-zinc-100 p-1.5 shadow-sm ${
+        TABS.length === 6 ? 'grid-cols-6' : TABS.length === 5 ? 'grid-cols-5' : 'grid-cols-4'
+      }`}>
         {TABS.map(t => (
           <button
             key={t.id}
@@ -311,76 +314,82 @@ export default function EventTabs(props: Props) {
             ))}
           </div>
 
-          {/* 湳的溫度甜點 */}
-          <div className="rounded-2xl border-2 border-pink-200 bg-gradient-to-b from-pink-50 to-white p-5">
-            <div className="flex items-center gap-3">
-              <span className="text-3xl">🍰</span>
-              <div>
-                <h3 className="text-2xl font-bold text-pink-900">湳的溫度 · 手作甜品</h3>
-                <p className="text-sm text-pink-700">用手作傳遞溫暖 · 嚴選天然食材</p>
-              </div>
-            </div>
+          <button
+            onClick={() => setTab('dessert')}
+            className="w-full rounded-2xl bg-amber-600 px-6 py-5 text-2xl font-bold text-white shadow-lg hover:bg-amber-700"
+          >
+            👉 看搭配的甜點（下一步）
+          </button>
+        </section>
+      )}
+
+      {/* === Tab 4：湳的溫度甜點 === */}
+      {tab === 'dessert' && (
+        <section className="space-y-6">
+          <header>
+            <h2 className="text-3xl font-bold text-zinc-900">🍰 湳的溫度 · 手作甜品</h2>
+            <p className="mt-2 text-lg text-pink-700">Sweet Collection · 現場限定</p>
             <p className="mt-3 text-lg leading-relaxed text-zinc-700">
-              三款手作甜點，搭配三支精品咖啡——每一口都是溫柔的陪伴。
+              三款手作甜點，搭配三支精品咖啡——用手作傳遞溫暖、嚴選天然食材。
             </p>
+          </header>
 
-            <div className="mt-4 space-y-4">
-              <div className="overflow-hidden rounded-xl border border-purple-200 bg-white">
-                <img src="/dessert-blueberry.jpg" alt="藍莓雲語" className="aspect-[4/3] w-full bg-purple-50 object-cover" />
-                <div className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-xs font-medium text-purple-600">湳的溫度 · Bleu</p>
-                      <h4 className="text-xl font-bold text-purple-900">🫐 藍莓雲語</h4>
-                      <p className="mt-0.5 text-sm italic text-zinc-500">鮮果慢熬法式慕斯蛋糕</p>
-                    </div>
-                    <span className="rounded-full bg-purple-100 px-3 py-1 text-xs font-medium text-purple-700">100% 鮮果</span>
+          <div className="space-y-5">
+            <div className="overflow-hidden rounded-2xl border-2 border-purple-200 bg-white shadow-sm">
+              <img src="/dessert-blueberry.jpg" alt="藍莓雲語" className="aspect-[4/3] w-full bg-purple-50 object-cover" />
+              <div className="p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-sm font-medium text-purple-600">湳的溫度 · Bleu</p>
+                    <h3 className="text-2xl font-bold text-purple-900">🫐 藍莓雲語</h3>
+                    <p className="mt-1 text-base italic text-zinc-500">鮮果慢熬法式慕斯蛋糕</p>
                   </div>
-                  <p className="mt-3 text-base leading-relaxed text-zinc-700">
-                    慢熬藍莓的溫柔，化成一層層雲朵般的幸福。鮮藍莓果泥新鮮熬煮，無色素、無香精，法式工藝慢火熬製，如雲朵般輕柔入口即化。
-                  </p>
+                  <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-700">100% 鮮果</span>
                 </div>
-              </div>
-
-              <div className="overflow-hidden rounded-xl border border-amber-200 bg-white">
-                <img src="/dessert-chocolate.jpg" alt="72% 生巧克力塔" className="aspect-[4/3] w-full bg-amber-50 object-cover" />
-                <div className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-xs font-medium text-amber-700">湳的溫度 · Nama Chocolate</p>
-                      <h4 className="text-xl font-bold text-amber-900">🍫 72% 生巧克力塔</h4>
-                      <p className="mt-0.5 text-sm italic text-zinc-500">72% Nama Chocolate Tart</p>
-                    </div>
-                    <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-800">大人味</span>
-                  </div>
-                  <p className="mt-3 text-base leading-relaxed text-zinc-700">
-                    嚴選 72% 頂級黑巧克力，低糖配方濃郁不苦澀。絲滑生巧內餡入口即化，搭配奶香酥脆手工塔皮，無人工色素、無添加。
-                  </p>
-                </div>
-              </div>
-
-              <div className="overflow-hidden rounded-xl border border-green-200 bg-white">
-                <img src="/dessert-quiche.jpg" alt="主廚異國風浪漫鹹派" className="aspect-[4/3] w-full bg-green-50 object-cover" />
-                <div className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-xs font-medium text-green-700">湳的溫度 · Chef's Quiche</p>
-                      <h4 className="text-xl font-bold text-green-900">🥧 主廚異國風浪漫鹹派</h4>
-                      <p className="mt-0.5 text-sm italic text-zinc-500">層層美味 × 天然食材 × 手工製作</p>
-                    </div>
-                    <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800">鹹點補充</span>
-                  </div>
-                  <p className="mt-3 text-base leading-relaxed text-zinc-700">
-                    天然乳酪濃郁香醇、新鮮雞蛋無抗生素、在地菇類、當季蔬菜、天然香草，融合異國風味與在地新鮮蔬菜，手工酥脆派皮包裹滿滿餡料，清爽不膩。
-                  </p>
-                </div>
+                <p className="mt-4 text-base leading-relaxed text-zinc-700">
+                  慢熬藍莓的溫柔，化成一層層雲朵般的幸福。鮮藍莓果泥新鮮熬煮，無色素、無香精，法式工藝慢火熬製，如雲朵般輕柔入口即化。
+                </p>
               </div>
             </div>
 
-            <p className="mt-4 text-sm italic text-pink-600">
-              ✦ 用手作傳遞溫暖，讓甜點成為生活中的美好記憶 ✦
-            </p>
+            <div className="overflow-hidden rounded-2xl border-2 border-amber-200 bg-white shadow-sm">
+              <img src="/dessert-chocolate.jpg" alt="72% 生巧克力塔" className="aspect-[4/3] w-full bg-amber-50 object-cover" />
+              <div className="p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-sm font-medium text-amber-700">湳的溫度 · Nama Chocolate</p>
+                    <h3 className="text-2xl font-bold text-amber-900">🍫 72% 生巧克力塔</h3>
+                    <p className="mt-1 text-base italic text-zinc-500">72% Nama Chocolate Tart</p>
+                  </div>
+                  <span className="rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-800">大人味</span>
+                </div>
+                <p className="mt-4 text-base leading-relaxed text-zinc-700">
+                  嚴選 72% 頂級黑巧克力，低糖配方濃郁不苦澀。絲滑生巧內餡入口即化，搭配奶香酥脆手工塔皮，無人工色素、無添加。
+                </p>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-2xl border-2 border-green-200 bg-white shadow-sm">
+              <img src="/dessert-quiche.jpg" alt="主廚異國風浪漫鹹派" className="aspect-[4/3] w-full bg-green-50 object-cover" />
+              <div className="p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-sm font-medium text-green-700">湳的溫度 · Chef's Quiche</p>
+                    <h3 className="text-2xl font-bold text-green-900">🥧 主廚異國風浪漫鹹派</h3>
+                    <p className="mt-1 text-base italic text-zinc-500">層層美味 × 天然食材 × 手工製作</p>
+                  </div>
+                  <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800">鹹點補充</span>
+                </div>
+                <p className="mt-4 text-base leading-relaxed text-zinc-700">
+                  天然乳酪濃郁香醇、新鮮雞蛋無抗生素、在地菇類、當季蔬菜、天然香草，融合異國風味與在地新鮮蔬菜，手工酥脆派皮包裹滿滿餡料，清爽不膩。
+                </p>
+              </div>
+            </div>
           </div>
+
+          <p className="text-center text-base italic text-pink-600">
+            ✦ 用手作傳遞溫暖，讓甜點成為生活中的美好記憶 ✦
+          </p>
 
           <button
             onClick={() => setTab('register')}
@@ -391,7 +400,7 @@ export default function EventTabs(props: Props) {
         </section>
       )}
 
-      {/* === Tab 4：立即報名 === */}
+      {/* === Tab 5：立即報名 === */}
       {tab === 'register' && (
         <section className="space-y-6">
           <header>
