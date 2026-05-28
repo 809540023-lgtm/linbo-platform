@@ -44,8 +44,8 @@ export default async function HomePage() {
             把全場每個人的觀察整合成 <strong>集體共識</strong>，找出正在悄悄轉弱的訊號。
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
+          {/* CTAs — 手機垂直堆疊（避免擠），md+ 才橫排 */}
+          <div className="flex flex-col gap-4 pt-2 md:flex-row md:flex-wrap md:gap-3">
             <Link
               href="/auth/login"
               className="rounded-2xl bg-amber-600 px-8 py-5 text-center text-xl font-bold text-white shadow-md hover:bg-amber-700 sm:text-2xl"

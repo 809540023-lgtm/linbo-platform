@@ -45,7 +45,7 @@ export default function EventTabs(props: Props) {
   const { event, registeredCount, remaining, isFull, myReg, user, onsitePriceNow, onlinePrice, coffees, startDateStr, eventId } = props
 
   const isLive = event.mux_status === 'active' && event.mux_playback_id
-  const TABS: { id: TabId; label: string; emoji: string }[] = isLive && myReg
+  const TABS: { id: TabId; label: string; emoji: string }[] = myReg
     ? [TAB_LIVE, ...TABS_DEFAULT]
     : [...TABS_DEFAULT]
 
@@ -63,8 +63,10 @@ export default function EventTabs(props: Props) {
             onClick={() => setTab(t.id)}
             className={`rounded-xl px-2 py-3 text-base font-semibold transition ${
               tab === t.id
-                ? (t.id === 'live' ? 'animate-pulse bg-red-600 text-white shadow-md' : 'bg-amber-600 text-white shadow-md')
-                : (t.id === 'live' ? 'bg-red-100 text-red-700' : 'text-zinc-700 hover:bg-white')
+                ? (t.id === 'live' && isLive ? 'animate-pulse bg-red-600 text-white shadow-md' : 'bg-amber-600 text-white shadow-md')
+                : (t.id === 'live'
+                    ? (isLive ? 'bg-red-100 text-red-700' : 'bg-zinc-200 text-zinc-500')
+                    : 'text-zinc-700 hover:bg-white')
             }`}
           >
             <span className="text-2xl">{t.emoji}</span>
@@ -73,7 +75,7 @@ export default function EventTabs(props: Props) {
         ))}
       </nav>
 
-      {tab === 'live' && (
+      {tab === 'live' && isLive && (
         <section className="space-y-4">
           <header>
             <div className="flex items-center gap-3">
@@ -104,6 +106,38 @@ export default function EventTabs(props: Props) {
             >
               開啟觀察輸入面板 →
             </a>
+          </div>
+        </section>
+      )}
+
+      {tab === 'live' && !isLive && (
+        <section className="space-y-4">
+          <header>
+            <div className="flex items-center gap-3">
+              <span className="inline-flex h-3 w-3 rounded-full bg-zinc-400"></span>
+              <h2 className="text-3xl font-bold text-zinc-700">直播尚未開始</h2>
+            </div>
+            <p className="mt-2 text-lg text-zinc-600">
+              活動當日 {startDateStr} 開場時，這裡會自動顯示林博的現場直播。
+            </p>
+          </header>
+
+          <div className="rounded-2xl border-2 border-dashed border-zinc-300 bg-zinc-50 p-10 text-center">
+            <p className="text-6xl">📺</p>
+            <p className="mt-4 text-2xl font-bold text-zinc-700">直播尚未開播</p>
+            <p className="mt-3 text-base leading-relaxed text-zinc-600">
+              活動開始後重新整理頁面，<br />
+              這裡會出現直播畫面 + 觀察輸入面板。
+            </p>
+          </div>
+
+          <div className="rounded-xl border-2 border-amber-200 bg-amber-50 p-5">
+            <p className="text-base font-bold text-amber-900">⏰ 在那之前您可以：</p>
+            <ul className="mt-2 space-y-1 text-base text-amber-900">
+              <li>• 切到 <strong>📝 報名</strong> 確認您的票種、付款方式</li>
+              <li>• 切到 <strong>☕ 咖啡</strong> <strong>🍰 甜點</strong> 看現場限定品鑑</li>
+              <li>• 切到 <strong>🎯 介紹</strong> 複習活動玩法</li>
+            </ul>
           </div>
         </section>
       )}
