@@ -13,12 +13,14 @@ export default async function HomePage() {
     <main className="mx-auto max-w-3xl px-6 py-16">
       <div className="space-y-6">
         <div className="flex items-center gap-4">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-amber-100 to-teal-100 text-2xl font-bold text-amber-700 shadow-sm md:h-20 md:w-20 md:text-3xl">
-            林博
-          </div>
+          <img
+            src="/linbo-avatar.jpg"
+            alt="林博"
+            className="h-20 w-20 rounded-full bg-teal-50 shadow-sm md:h-24 md:w-24"
+          />
           <div>
-            <p className="text-base font-bold text-zinc-900 md:text-lg">林博</p>
-            <p className="text-xs font-medium text-amber-600 md:text-sm">群眾智慧 × AI 共創座談會</p>
+            <p className="text-xl font-bold text-zinc-900 md:text-2xl">林博</p>
+            <p className="text-sm font-medium text-amber-600 md:text-base">群眾智慧 × AI 共創座談會</p>
           </div>
         </div>
         <h1 className="text-4xl font-bold leading-tight md:text-5xl">

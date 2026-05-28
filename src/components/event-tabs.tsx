@@ -109,9 +109,14 @@ export default function EventTabs(props: Props) {
       {tab === 'about' && (
         <section className="space-y-6">
           <header>
-            <p className="text-base font-medium text-amber-600">林博 · 群眾智慧 × AI 共創座談會 · Pilot 場</p>
-            <h1 className="mt-2 text-4xl font-bold leading-tight text-zinc-900">
-              <span className="block text-2xl text-amber-700">林博 ·</span>
+            <div className="flex items-center gap-3">
+              <img src="/linbo-avatar.jpg" alt="林博" className="h-14 w-14 rounded-full bg-teal-50 shadow-sm" />
+              <div>
+                <p className="text-lg font-bold text-zinc-900">林博</p>
+                <p className="text-sm font-medium text-amber-600">群眾智慧 × AI 共創 · Pilot 場</p>
+              </div>
+            </div>
+            <h1 className="mt-4 text-4xl font-bold leading-tight text-zinc-900">
               {event.title}
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-zinc-700">{event.description}</p>
