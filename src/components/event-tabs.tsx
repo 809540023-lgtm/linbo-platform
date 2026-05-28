@@ -196,7 +196,7 @@ export default function EventTabs(props: Props) {
               <li>🔮 <strong>不是報明牌、不是選股課</strong>——主持人不告訴您要買什麼</li>
               <li>👥 <strong>每個人都是貢獻者</strong>——您腦中的觀察就是現場的原料</li>
               <li>🤖 <strong>背後 15 個 AI 機器人輔助</strong>——把零碎觀察整合成排行榜</li>
-              <li>☕ <strong>現場限定的精品咖啡品鑑</strong>——三支稀有莊園豆，配藍帶甜點</li>
+              <li>☕ <strong>現場限定的精品咖啡品鑑</strong>——三支稀有莊園豆，配湳的溫度手作甜點</li>
               <li>🎯 <strong>共同發現轉弱訊號</strong>——不是預測，是群體智慧的即時呈現</li>
             </ul>
           </div>
@@ -233,7 +233,7 @@ export default function EventTabs(props: Props) {
             <ul className="mt-4 space-y-2 text-lg leading-relaxed text-zinc-800">
               <li>✅ 現場互動體驗</li>
               <li>☕ <strong>含精品咖啡品鑑</strong>（3 支稀有莊園豆）</li>
-              <li>🍰 含藍帶精選甜點</li>
+              <li>🍰 含「湳的溫度」3 款手作甜點</li>
               <li>📺 含 7 天線上回放</li>
             </ul>
           </div>
@@ -311,19 +311,75 @@ export default function EventTabs(props: Props) {
             ))}
           </div>
 
-          {/* 藍帶甜點 */}
-          <div className="rounded-2xl border-4 border-dashed border-pink-300 bg-pink-50 p-6">
+          {/* 湳的溫度甜點 */}
+          <div className="rounded-2xl border-2 border-pink-200 bg-gradient-to-b from-pink-50 to-white p-5">
             <div className="flex items-center gap-3">
-              <span className="text-4xl">🍰</span>
+              <span className="text-3xl">🍰</span>
               <div>
-                <h3 className="text-2xl font-bold text-pink-900">藍帶精選甜點</h3>
-                <p className="text-sm text-pink-700">Le Cordon Bleu Selected Pastries</p>
+                <h3 className="text-2xl font-bold text-pink-900">湳的溫度 · 手作甜品</h3>
+                <p className="text-sm text-pink-700">用手作傳遞溫暖 · 嚴選天然食材</p>
               </div>
             </div>
-            <p className="mt-4 text-lg leading-relaxed text-pink-900">
-              當日搭配三支精品咖啡的藍帶廚藝學院級甜點精選——詳細品項與風味說明將於活動前公布，敬請期待。
+            <p className="mt-3 text-lg leading-relaxed text-zinc-700">
+              三款手作甜點，搭配三支精品咖啡——每一口都是溫柔的陪伴。
             </p>
-            <p className="mt-3 text-base italic text-pink-600">（甜點資料近日補上）</p>
+
+            <div className="mt-4 space-y-4">
+              <div className="overflow-hidden rounded-xl border border-purple-200 bg-white">
+                <img src="/dessert-blueberry.jpg" alt="藍莓雲語" className="aspect-[4/3] w-full bg-purple-50 object-cover" />
+                <div className="p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-medium text-purple-600">湳的溫度 · Bleu</p>
+                      <h4 className="text-xl font-bold text-purple-900">🫐 藍莓雲語</h4>
+                      <p className="mt-0.5 text-sm italic text-zinc-500">鮮果慢熬法式慕斯蛋糕</p>
+                    </div>
+                    <span className="rounded-full bg-purple-100 px-3 py-1 text-xs font-medium text-purple-700">100% 鮮果</span>
+                  </div>
+                  <p className="mt-3 text-base leading-relaxed text-zinc-700">
+                    慢熬藍莓的溫柔，化成一層層雲朵般的幸福。鮮藍莓果泥新鮮熬煮，無色素、無香精，法式工藝慢火熬製，如雲朵般輕柔入口即化。
+                  </p>
+                </div>
+              </div>
+
+              <div className="overflow-hidden rounded-xl border border-amber-200 bg-white">
+                <img src="/dessert-chocolate.jpg" alt="72% 生巧克力塔" className="aspect-[4/3] w-full bg-amber-50 object-cover" />
+                <div className="p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-medium text-amber-700">湳的溫度 · Nama Chocolate</p>
+                      <h4 className="text-xl font-bold text-amber-900">🍫 72% 生巧克力塔</h4>
+                      <p className="mt-0.5 text-sm italic text-zinc-500">72% Nama Chocolate Tart</p>
+                    </div>
+                    <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-800">大人味</span>
+                  </div>
+                  <p className="mt-3 text-base leading-relaxed text-zinc-700">
+                    嚴選 72% 頂級黑巧克力，低糖配方濃郁不苦澀。絲滑生巧內餡入口即化，搭配奶香酥脆手工塔皮，無人工色素、無添加。
+                  </p>
+                </div>
+              </div>
+
+              <div className="overflow-hidden rounded-xl border border-green-200 bg-white">
+                <img src="/dessert-quiche.jpg" alt="主廚異國風浪漫鹹派" className="aspect-[4/3] w-full bg-green-50 object-cover" />
+                <div className="p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-medium text-green-700">湳的溫度 · Chef's Quiche</p>
+                      <h4 className="text-xl font-bold text-green-900">🥧 主廚異國風浪漫鹹派</h4>
+                      <p className="mt-0.5 text-sm italic text-zinc-500">層層美味 × 天然食材 × 手工製作</p>
+                    </div>
+                    <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800">鹹點補充</span>
+                  </div>
+                  <p className="mt-3 text-base leading-relaxed text-zinc-700">
+                    天然乳酪濃郁香醇、新鮮雞蛋無抗生素、在地菇類、當季蔬菜、天然香草，融合異國風味與在地新鮮蔬菜，手工酥脆派皮包裹滿滿餡料，清爽不膩。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <p className="mt-4 text-sm italic text-pink-600">
+              ✦ 用手作傳遞溫暖，讓甜點成為生活中的美好記憶 ✦
+            </p>
           </div>
 
           <button
