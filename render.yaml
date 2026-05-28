@@ -35,59 +35,9 @@ services:
       - key: MUX_TOKEN_SECRET
         sync: false
 
-  # === Cron jobs ===
-  # 用 curlimages/curl 輕量 image 觸發 web 上的 API
-  # 共用同一個 CRON_SECRET 跟 web service（fromService）
-  - type: cron
-    name: cron-agent-a
-    runtime: image
-    image:
-      url: docker.io/curlimages/curl:latest
-    region: singapore
-    schedule: "0 * * * *"
-    autoDeploy: true
-    command: curl -fsSL -H "Authorization: Bearer $CRON_SECRET" "$SITE_URL/api/agent-a"
-    envVars:
-      - key: CRON_SECRET
-        fromService:
-          type: web
-          name: linbo-platform
-          envVarKey: CRON_SECRET
-      - key: SITE_URL
-        value: https://linbo.0915888927.com
-
-  - type: cron
-    name: cron-agent-b
-    runtime: image
-    image:
-      url: docker.io/curlimages/curl:latest
-    region: singapore
-    schedule: "0 * * * *"
-    autoDeploy: true
-    command: curl -fsSL -H "Authorization: Bearer $CRON_SECRET" "$SITE_URL/api/agent-b"
-    envVars:
-      - key: CRON_SECRET
-        fromService:
-          type: web
-          name: linbo-platform
-          envVarKey: CRON_SECRET
-      - key: SITE_URL
-        value: https://linbo.0915888927.com
-
-  - type: cron
-    name: cron-send-reminder
-    runtime: image
-    image:
-      url: docker.io/curlimages/curl:latest
-    region: singapore
-    schedule: "0 1 * * *"  # 09:00 Asia/Taipei = 01:00 UTC
-    autoDeploy: true
-    command: curl -fsSL -H "Authorization: Bearer $CRON_SECRET" "$SITE_URL/api/send-reminder"
-    envVars:
-      - key: CRON_SECRET
-        fromService:
-          type: web
-          name: linbo-platform
-          envVarKey: CRON_SECRET
-      - key: SITE_URL
-        value: https://linbo.0915888927.com
+# === Cron jobs（暫時放在 docs/render-cron-setup.md，等手動驗證後再加進來）===
+# 之前在這份 blueprint 加 cron service 後，Render 部署卡住 ~50 分鐘無進展，
+# 推測 cron 區塊語法不被接受。先讓 web 部署正常，cron 改用：
+#   (a) Render Dashboard 手動建立 3 個 Cron Job，或
+#   (b) 用外部排程器（cron-job.org / EasyCron）打 API
+# 詳見 docs/render-cron-setup.md
