@@ -9,13 +9,13 @@ test.describe('首頁', () => {
   })
 
   test('彈跳框（IntroModal）首次造訪會出現，關掉後不再出現', async ({ page, context }) => {
-    // 清掉 localStorage，模擬首次造訪
-    await context.clearCookies()
+    // modal 用 localStorage 'linbo_intro_v3_seen' 判斷，goto 前先清掉
+    await context.addInitScript(() => {
+      try { window.localStorage.removeItem('linbo_intro_v3_seen') } catch {}
+    })
     await page.goto('/')
-    // setTimeout 400ms 後出現
-    await page.waitForTimeout(800)
+    await page.waitForTimeout(800) // intro-modal 有 400ms setTimeout
 
-    // modal 用 fixed inset-0 z-50 + bg-black/60，找含「林博」的浮層
     const modal = page.locator('div.fixed.inset-0.z-50')
     await expect(modal).toBeVisible({ timeout: 3000 })
 
@@ -29,13 +29,15 @@ test.describe('首頁', () => {
     await expect(modal).toBeHidden()
   })
 
-  test('近期場次卡片可點進活動頁', async ({ page }) => {
+  test('近期場次卡片可點進活動頁（未登入會被引導去登入）', async ({ page }) => {
     await page.goto('/')
     const firstEventLink = page.locator('a[href^="/events/"]').first()
     if (await firstEventLink.count() === 0) {
       test.skip(true, '首頁沒有近期場次')
     }
     await firstEventLink.click()
-    await expect(page).toHaveURL(/\/events\/[0-9a-f-]{36}/)
+    // middleware 會把未登入者轉去 /auth/login?next=/events/...
+    // 接受任一：直接停在 /events/[id] 或 redirect 去 /auth/login
+    await expect(page).toHaveURL(/\/(events\/[0-9a-f-]{36}|auth\/login)/)
   })
 })
