@@ -205,9 +205,19 @@ export default function EventTabs(props: Props) {
             {event.location && (
               <div className="flex items-start gap-4 border-t border-zinc-100 pt-4">
                 <span className="text-3xl">📍</span>
-                <div>
+                <div className="flex-1">
                   <p className="text-base font-medium text-zinc-500">地點</p>
                   <p className="mt-1 text-xl leading-relaxed text-zinc-900">{event.location}</p>
+                  {event.directions && (
+                    <details className="mt-3 rounded-xl bg-amber-50 px-4 py-3">
+                      <summary className="cursor-pointer text-base font-semibold text-amber-800">
+                        🗺️ 點開看交通路線
+                      </summary>
+                      <div className="mt-3 whitespace-pre-line text-base leading-relaxed text-zinc-800">
+                        {event.directions}
+                      </div>
+                    </details>
+                  )}
                 </div>
               </div>
             )}
