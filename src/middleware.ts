@@ -1,10 +1,18 @@
-// 路由保護：未登入訪問 /events 或 /dashboard 會被導向 /auth/login
+// 路由保護：
+// - 公開：/、/events、/events/[id]（活動介紹/票價/咖啡/甜點/報名表單都看得到）
+// - 私有：/dashboard、/host、/events/[id]/live（直播頁），點報名鈕 POST 才驗證
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 type CookieToSet = { name: string; value: string; options?: CookieOptions }
 
-const PROTECTED_PATHS = ['/events', '/dashboard', '/host']
+function isProtectedPath(pathname: string): boolean {
+  if (pathname.startsWith('/dashboard')) return true
+  if (pathname.startsWith('/host')) return true
+  // 活動詳細頁本身公開；只擋直播頁（要登入 + 報名才能看）
+  if (/^\/events\/[^/]+\/live(\/|$)/.test(pathname)) return true
+  return false
+}
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request })
@@ -30,8 +38,7 @@ export async function middleware(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser()
 
-  const isProtected = PROTECTED_PATHS.some(p => request.nextUrl.pathname.startsWith(p))
-  if (isProtected && !user) {
+  if (isProtectedPath(request.nextUrl.pathname) && !user) {
     const url = request.nextUrl.clone()
     url.pathname = '/auth/login'
     url.searchParams.set('next', request.nextUrl.pathname)

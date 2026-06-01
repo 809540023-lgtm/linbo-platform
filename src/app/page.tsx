@@ -51,10 +51,10 @@ export default async function HomePage() {
           {/* CTAs — 手機垂直堆疊（避免擠），md+ 才橫排 */}
           <div className="flex flex-col gap-4 pt-2 md:flex-row md:flex-wrap md:gap-3">
             <Link
-              href="/auth/login"
+              href={events && events[0] ? `/events/${events[0].id}` : '/auth/login'}
               className="rounded-2xl bg-amber-600 px-8 py-5 text-center text-xl font-bold text-white shadow-md hover:bg-amber-700 sm:text-2xl"
             >
-              🎫 立即報名
+              🎫 看活動詳情 / 報名
             </Link>
             <Link
               href="/demo"
