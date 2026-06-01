@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // 管理員監控儀表板：看 AI Agent 跑了沒、Scout 抓到什麼、訊息流量
 import { createClient, createAdminClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'

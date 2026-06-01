@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // 會員審核：admin 看待審核 + 已核可清單，可一鍵核可/拒絕/停權
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'

@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // 新增活動
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'

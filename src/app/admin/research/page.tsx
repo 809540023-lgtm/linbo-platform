@@ -1,4 +1,5 @@
 // 研究 Agent 後台：列出 15 個 agents、執行、看歷史結果
+// dynamic 設定見 layout.tsx（client component 不能直接放 dynamic）
 'use client'
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'

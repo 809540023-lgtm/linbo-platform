@@ -2,8 +2,9 @@ import Link from 'next/link'
 import { createAdminClient } from '@/lib/supabase/server'
 import IntroModal from '@/components/intro-modal'
 
-// 首頁不要長期快取（之前 s-maxage=31536000 導致改首頁不會生效）
-export const revalidate = 60
+// 首頁不要在 build 時靜態化（Supabase env 在 build 階段不可用會 throw）
+// 並避免長期快取（之前 s-maxage=31536000 導致改首頁不會生效）
+export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
   const admin = createAdminClient()

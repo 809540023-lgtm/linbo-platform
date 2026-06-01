@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // 後台總覽：四大區塊快速進入
 import Link from 'next/link'
 import { createClient, createAdminClient } from '@/lib/supabase/server'

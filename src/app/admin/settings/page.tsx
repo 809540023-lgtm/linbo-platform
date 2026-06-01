@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // 系統設定總覽：顯示目前所有環境設定 + 提供常用操作快捷
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'

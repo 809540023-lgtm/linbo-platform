@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // 活動管理：列出所有活動，可新增/編輯/狀態切換
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
