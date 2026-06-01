@@ -9,7 +9,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test",
-    "test:e2e:install": "playwright install --with-deps chromium"
+    "test:e2e:install": "playwright install --with-deps chromium",
+    "postinstall": "node -e \"if(process.env.RENDER){console.log('[postinstall] RENDER detected, running next build');require('child_process').execSync('next build',{stdio:'inherit'})}else{console.log('[postinstall] not on Render, skip next build')}\""
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
