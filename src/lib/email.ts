@@ -137,9 +137,7 @@ export async function sendRegistrationConfirmation(
         <p style="margin:0 0 12px;font-size:14px;color:#991b1b;line-height:1.6;">${PAYMENT_INFO.policyNote}</p>
         ${paymentInfoHtml()}
         <p style="margin:12px 0 0;font-size:14px;color:#991b1b;font-weight:bold;">📱 轉帳後請將「後 5 碼 + 姓名」LINE 給林博，款項到帳才算正式報名成功</p>
-        ${input.ticketType === 'onsite' ? `
-        <p style="margin:10px 0 0;font-size:13px;color:#991b1b;">現場票：先匯款下限 NT$ 500，當天再依實際人數結算多退少補（上限 NT$ 1,000）</p>
-        ` : ''}
+        <p style="margin:10px 0 0;font-size:14px;color:#991b1b;font-weight:bold;">⚠️ 請務必先匯款保留座位</p>
       </td></tr>
     </table>
 

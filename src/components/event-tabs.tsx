@@ -265,8 +265,8 @@ export default function EventTabs(props: Props) {
                 <p className="text-4xl font-bold text-amber-900">NT$ {onsitePriceNow}</p>
               </div>
             </div>
-            <p className="mt-3 rounded-lg bg-white px-3 py-2 text-base text-amber-900">
-              先匯款下限 NT$ 500，當天再依實際人數多退少補（上限 NT$ 1,000）
+            <p className="mt-3 rounded-lg bg-white px-3 py-2 text-base font-bold text-amber-900">
+              ⚠️ 請務必先匯款保留座位
             </p>
             <ul className="mt-4 space-y-2 text-lg leading-relaxed text-zinc-800">
               <li>✅ 現場互動體驗</li>
@@ -326,8 +326,8 @@ export default function EventTabs(props: Props) {
             <p className="mt-4 rounded-lg bg-amber-50 px-4 py-3 text-base font-medium text-amber-900">
               📱 轉帳後請將<strong>後 5 碼 + 姓名</strong> LINE 給林博，款項到帳才算正式報名成功
             </p>
-            <p className="mt-3 text-sm text-zinc-500">
-              現場票：先匯款下限 NT$ 500，活動當天再依實際人數結算多退少補（最多補到 NT$ 1,000 上限）
+            <p className="mt-3 rounded-lg bg-red-50 px-4 py-3 text-base font-bold text-red-700">
+              ⚠️ 請務必先匯款保留座位
             </p>
           </div>
 
