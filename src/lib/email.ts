@@ -4,6 +4,7 @@
 // production 請設成自己驗證過的 domain，例如 '林博活動 <notify@linbo.0915888927.com>'
 
 import { Resend } from 'resend'
+import { PAYMENT_INFO, paymentInfoHtml } from './payment'
 
 const apiKey = process.env.RESEND_API_KEY
 const fromAddress =
@@ -130,7 +131,19 @@ export async function sendRegistrationConfirmation(
       </td></tr>
     </table>
 
-    <p style="margin:0 0 14px;"><strong>付款方式</strong>：活動當天現場付款（現金/Line Pay），<strong>不必預付</strong>。</p>
+    ${input.ticketType === 'online' ? `
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;border:2px solid #d97706;margin:0 0 20px;">
+      <tr><td style="padding:18px;">
+        <p style="margin:0 0 8px;font-size:14px;color:#92400e;font-weight:bold;">💳 線上票匯款資訊</p>
+        <p style="margin:0 0 10px;font-size:14px;color:#92400e;">${PAYMENT_INFO.onlineDeadlineNote}</p>
+        ${paymentInfoHtml()}
+        <p style="margin:12px 0 0;font-size:14px;color:#92400e;">📱 轉帳後請將後 5 碼 + 姓名 LINE 給林博確認</p>
+      </td></tr>
+    </table>
+    ` : `
+    <p style="margin:0 0 14px;"><strong>付款方式</strong>：${PAYMENT_INFO.onsiteNote}，<strong>不必預付</strong>。</p>
+    `}
+
     <p style="margin:0 0 14px;">活動前 3 天我們會再寄一封提醒信。當天請帶手機，現場用手機打開活動頁參與互動。</p>
     <p style="margin:18px 0 0;font-size:14px;color:#71717a;">如需修改報名資訊或取消，請點下方連結回到活動頁。</p>
   `
@@ -174,7 +187,19 @@ export async function sendEventReminder(input: ReminderInput): Promise<SendResul
     </table>
 
     <p style="margin:0 0 14px;"><strong>當天請帶</strong>：手機（用來看直播 + 送觀察）、身份證明（現場票需要）。</p>
-    <p style="margin:0 0 14px;"><strong>付款</strong>：活動當天現場付款（現金/Line Pay），不必預付。</p>
+
+    ${input.ticketType === 'online' ? `
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;border:2px solid #d97706;margin:14px 0 20px;">
+      <tr><td style="padding:18px;">
+        <p style="margin:0 0 8px;font-size:14px;color:#92400e;font-weight:bold;">💳 線上票匯款（尚未付款請盡快）</p>
+        ${paymentInfoHtml()}
+        <p style="margin:12px 0 0;font-size:14px;color:#92400e;">📱 轉帳後請將後 5 碼 + 姓名 LINE 給林博確認</p>
+      </td></tr>
+    </table>
+    ` : `
+    <p style="margin:0 0 14px;"><strong>付款</strong>：${PAYMENT_INFO.onsiteNote}，不必預付。</p>
+    `}
+
     <p style="margin:18px 0 0;font-size:14px;color:#71717a;">若臨時無法出席，請點下方連結回活動頁或直接回信告知。</p>
   `
 

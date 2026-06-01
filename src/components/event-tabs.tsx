@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import { PAYMENT_INFO } from '@/lib/payment'
 
 type Coffee = {
   no: string
@@ -298,6 +299,29 @@ export default function EventTabs(props: Props) {
           <div className="rounded-xl bg-zinc-50 p-5">
             <p className="text-base leading-relaxed text-zinc-700">
               💡 <strong>說明：</strong>現場票價依當天實際出席人數結算（總成本 NT$ 20,000 由現場人均分攤，上限 NT$ 1,000、下限 NT$ 500）。當天現場以現金或 LINE Pay 收取；線上票請於報名後 3 日內完成轉帳。
+            </p>
+          </div>
+
+          {/* 線上票匯款資訊 */}
+          <div className="rounded-2xl border-2 border-zinc-300 bg-white p-6">
+            <h3 className="text-xl font-bold text-zinc-900">💳 線上票匯款資訊</h3>
+            <p className="mt-2 text-base text-zinc-600">{PAYMENT_INFO.onlineDeadlineNote}</p>
+            <dl className="mt-4 space-y-3 text-lg">
+              <div className="flex items-baseline gap-3">
+                <dt className="w-20 shrink-0 text-base text-zinc-500">銀行</dt>
+                <dd className="font-semibold text-zinc-900">{PAYMENT_INFO.bankName}（{PAYMENT_INFO.bankCode}）</dd>
+              </div>
+              <div className="flex items-baseline gap-3">
+                <dt className="w-20 shrink-0 text-base text-zinc-500">帳號</dt>
+                <dd className="font-mono text-2xl font-bold tracking-wider text-amber-700 select-all">{PAYMENT_INFO.accountNumber}</dd>
+              </div>
+              <div className="flex items-baseline gap-3">
+                <dt className="w-20 shrink-0 text-base text-zinc-500">戶名</dt>
+                <dd className="font-semibold text-zinc-900">{PAYMENT_INFO.accountName}</dd>
+              </div>
+            </dl>
+            <p className="mt-4 rounded-lg bg-amber-50 px-4 py-3 text-base text-amber-900">
+              📱 轉帳後請將後 5 碼 + 姓名 LINE 給林博確認
             </p>
           </div>
 
