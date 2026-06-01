@@ -266,7 +266,7 @@ export default function EventTabs(props: Props) {
               </div>
             </div>
             <p className="mt-3 rounded-lg bg-white px-3 py-2 text-base text-amber-900">
-              當天視人數分攤 NT$ 500 ~ NT$ 1,000，當天現場結算
+              先匯款下限 NT$ 500，當天再依實際人數多退少補（上限 NT$ 1,000）
             </p>
             <ul className="mt-4 space-y-2 text-lg leading-relaxed text-zinc-800">
               <li>✅ 現場互動體驗</li>
@@ -286,7 +286,7 @@ export default function EventTabs(props: Props) {
               </div>
             </div>
             <p className="mt-3 rounded-lg bg-zinc-50 px-3 py-2 text-base text-zinc-700">
-              遠端參與 · 固定費用
+              遠端參與 · 固定費用 · 報名後請於 3 日內匯款
             </p>
             <ul className="mt-4 space-y-2 text-lg leading-relaxed text-zinc-800">
               <li>📱 手機 / 電腦觀看直播</li>
@@ -298,14 +298,17 @@ export default function EventTabs(props: Props) {
 
           <div className="rounded-xl bg-zinc-50 p-5">
             <p className="text-base leading-relaxed text-zinc-700">
-              💡 <strong>說明：</strong>現場票價依當天實際出席人數結算（總成本 NT$ 20,000 由現場人均分攤，上限 NT$ 1,000、下限 NT$ 500）。當天現場以現金或 LINE Pay 收取；線上票請於報名後 3 日內完成轉帳。
+              💡 <strong>說明：</strong>現場票價依當天實際出席人數結算（總成本 NT$ 20,000 由現場人均分攤，上限 NT$ 1,000、下限 NT$ 500）。
             </p>
           </div>
 
-          {/* 線上票匯款資訊 */}
-          <div className="rounded-2xl border-2 border-zinc-300 bg-white p-6">
-            <h3 className="text-xl font-bold text-zinc-900">💳 線上票匯款資訊</h3>
-            <p className="mt-2 text-base text-zinc-600">{PAYMENT_INFO.onlineDeadlineNote}</p>
+          {/* 匯款資訊 — 現場 / 線上 都要先匯款 */}
+          <div className="rounded-2xl border-4 border-red-400 bg-white p-6 shadow-md">
+            <div className="mb-3 inline-block rounded-full bg-red-100 px-3 py-1 text-sm font-bold text-red-700">
+              ⚠️ 必看 · 報名規則
+            </div>
+            <h3 className="text-2xl font-bold text-zinc-900">💳 匯款帳號（現場+線上 都需先匯款）</h3>
+            <p className="mt-2 text-base text-zinc-700">{PAYMENT_INFO.policyNote}</p>
             <dl className="mt-4 space-y-3 text-lg">
               <div className="flex items-baseline gap-3">
                 <dt className="w-20 shrink-0 text-base text-zinc-500">銀行</dt>
@@ -313,15 +316,18 @@ export default function EventTabs(props: Props) {
               </div>
               <div className="flex items-baseline gap-3">
                 <dt className="w-20 shrink-0 text-base text-zinc-500">帳號</dt>
-                <dd className="font-mono text-2xl font-bold tracking-wider text-amber-700 select-all">{PAYMENT_INFO.accountNumber}</dd>
+                <dd className="font-mono text-2xl font-bold tracking-wider text-red-700 select-all">{PAYMENT_INFO.accountNumber}</dd>
               </div>
               <div className="flex items-baseline gap-3">
                 <dt className="w-20 shrink-0 text-base text-zinc-500">戶名</dt>
                 <dd className="font-semibold text-zinc-900">{PAYMENT_INFO.accountName}</dd>
               </div>
             </dl>
-            <p className="mt-4 rounded-lg bg-amber-50 px-4 py-3 text-base text-amber-900">
-              📱 轉帳後請將後 5 碼 + 姓名 LINE 給林博確認
+            <p className="mt-4 rounded-lg bg-amber-50 px-4 py-3 text-base font-medium text-amber-900">
+              📱 轉帳後請將<strong>後 5 碼 + 姓名</strong> LINE 給林博，款項到帳才算正式報名成功
+            </p>
+            <p className="mt-3 text-sm text-zinc-500">
+              現場票：先匯款下限 NT$ 500，活動當天再依實際人數結算多退少補（最多補到 NT$ 1,000 上限）
             </p>
           </div>
 

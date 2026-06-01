@@ -131,18 +131,17 @@ export async function sendRegistrationConfirmation(
       </td></tr>
     </table>
 
-    ${input.ticketType === 'online' ? `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;border:2px solid #d97706;margin:0 0 20px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fff5f5;border-radius:12px;border:3px solid #dc2626;margin:0 0 20px;">
       <tr><td style="padding:18px;">
-        <p style="margin:0 0 8px;font-size:14px;color:#92400e;font-weight:bold;">💳 線上票匯款資訊</p>
-        <p style="margin:0 0 10px;font-size:14px;color:#92400e;">${PAYMENT_INFO.onlineDeadlineNote}</p>
+        <p style="margin:0 0 8px;font-size:15px;color:#991b1b;font-weight:bold;">⚠️ 必看 · 完成匯款才算正式報名</p>
+        <p style="margin:0 0 12px;font-size:14px;color:#991b1b;line-height:1.6;">${PAYMENT_INFO.policyNote}</p>
         ${paymentInfoHtml()}
-        <p style="margin:12px 0 0;font-size:14px;color:#92400e;">📱 轉帳後請將後 5 碼 + 姓名 LINE 給林博確認</p>
+        <p style="margin:12px 0 0;font-size:14px;color:#991b1b;font-weight:bold;">📱 轉帳後請將「後 5 碼 + 姓名」LINE 給林博，款項到帳才算正式報名成功</p>
+        ${input.ticketType === 'onsite' ? `
+        <p style="margin:10px 0 0;font-size:13px;color:#991b1b;">現場票：先匯款下限 NT$ 500，當天再依實際人數結算多退少補（上限 NT$ 1,000）</p>
+        ` : ''}
       </td></tr>
     </table>
-    ` : `
-    <p style="margin:0 0 14px;"><strong>付款方式</strong>：${PAYMENT_INFO.onsiteNote}，<strong>不必預付</strong>。</p>
-    `}
 
     <p style="margin:0 0 14px;">活動前 3 天我們會再寄一封提醒信。當天請帶手機，現場用手機打開活動頁參與互動。</p>
     <p style="margin:18px 0 0;font-size:14px;color:#71717a;">如需修改報名資訊或取消，請點下方連結回到活動頁。</p>
@@ -188,17 +187,13 @@ export async function sendEventReminder(input: ReminderInput): Promise<SendResul
 
     <p style="margin:0 0 14px;"><strong>當天請帶</strong>：手機（用來看直播 + 送觀察）、身份證明（現場票需要）。</p>
 
-    ${input.ticketType === 'online' ? `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;border:2px solid #d97706;margin:14px 0 20px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fff5f5;border-radius:12px;border:2px solid #dc2626;margin:14px 0 20px;">
       <tr><td style="padding:18px;">
-        <p style="margin:0 0 8px;font-size:14px;color:#92400e;font-weight:bold;">💳 線上票匯款（尚未付款請盡快）</p>
+        <p style="margin:0 0 8px;font-size:15px;color:#991b1b;font-weight:bold;">💳 匯款提醒 — 尚未付款請盡快</p>
         ${paymentInfoHtml()}
-        <p style="margin:12px 0 0;font-size:14px;color:#92400e;">📱 轉帳後請將後 5 碼 + 姓名 LINE 給林博確認</p>
+        <p style="margin:12px 0 0;font-size:14px;color:#991b1b;">📱 轉帳後請將「後 5 碼 + 姓名」LINE 給林博確認</p>
       </td></tr>
     </table>
-    ` : `
-    <p style="margin:0 0 14px;"><strong>付款</strong>：${PAYMENT_INFO.onsiteNote}，不必預付。</p>
-    `}
 
     <p style="margin:18px 0 0;font-size:14px;color:#71717a;">若臨時無法出席，請點下方連結回活動頁或直接回信告知。</p>
   `
