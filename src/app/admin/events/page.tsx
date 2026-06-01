@@ -48,6 +48,7 @@ export default async function AdminEventsPage() {
                   <span className={`rounded-full px-2 py-0.5 text-xs ${statusColor(e.status)}`}>{e.status}</span>
                 </td>
                 <td className="px-4 py-3 text-right text-xs">
+                  <Link href={`/admin/events/${e.id}/registrations`} className="mr-3 font-medium text-amber-700 underline">報名名單</Link>
                   <Link href={`/admin/events/${e.id}/live-control`} className="mr-3 text-amber-600 underline">現場控制</Link>
                   <Link href={`/admin/events/${e.id}/edit`} className="text-zinc-600 underline">編輯</Link>
                 </td>
