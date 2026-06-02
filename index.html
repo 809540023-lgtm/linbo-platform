@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>林博AI | 專案監控總站</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #111827;
+    --bg-card: #1a1f35;
+    --bg-card-hover: #222845;
+    --border-color: #2a3050;
+    --text-primary: #e8ecf4;
+    --text-secondary: #8892a8;
+    --accent-cyan: #00f0ff;
+    --accent-purple: #a855f7;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --accent-yellow: #f59e0b;
+    --accent-blue: #3b82f6;
+    --glow-cyan: 0 0 20px rgba(0, 240, 255, 0.3);
+    --glow-purple: 0 0 20px rgba(168, 85, 247, 0.3);
+    --glow-green: 0 0 20px rgba(16, 185, 129, 0.3);
+  }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Noto Sans TC', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+    animation: gridMove 20s linear infinite;
+  }
+
+  @keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(60px, 60px); }
+  }
+
+  .particles {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 3px; height: 3px;
+    background: var(--accent-cyan);
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: float linear infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+
+  .header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 50px 20px 30px;
+    background: linear-gradient(180deg, rgba(0,240,255,0.05) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(0,240,255,0.1);
+  }
+
+  .header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes titleGlow {
+    0% { filter: drop-shadow(0 0 10px rgba(0,240,255,0.3)); }
+    100% { filter: drop-shadow(0 0 25px rgba(168,85,247,0.4)); }
+  }
+
+  .header .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .header .status-bar {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .status-dot.green { background: var(--accent-green); box-shadow: 0 0 10px var(--accent-green); }
+  .status-dot.yellow { background: var(--accent-yellow); box-shadow: 0 0 10px var(--accent-yellow); }
+  .status-dot.red { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .controls {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 25px 20px;
+    flex-wrap: wrap;
+  }
+
+  .search-box {
+    position: relative;
+    width: 350px;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    transition: all 0.3s;
+    outline: none;
+  }
+
+  .search-box input:focus {
+    border-color: var(--accent-cyan);
+    box-shadow: var(--glow-cyan);
+  }
+
+  .search-box .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+  }
+
+  .filter-btn {
+    padding: 10px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+    box-shadow: var(--glow-cyan);
+    background: rgba(0,240,255,0.05);
+  }
+
+  .main {
+    position: relative;
+    z-index: 10;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 10px 30px 60px;
+  }
+
+  .columns-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 15px;
+    padding: 0 5px;
+  }
+
+  .col-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    border-bottom: 2px solid;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .col-label.projects {
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+  }
+
+  .col-label.monitors {
+    color: var(--accent-purple);
+    border-color: var(--accent-purple);
+  }
+
+  .col-label .icon { font-size: 1.2rem; }
+
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .project-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-cyan);
+    box-shadow: var(--glow-cyan);
+    background: var(--bg-card-hover);
+  }
+
+  .card.monitor:hover {
+    border-color: var(--accent-purple);
+    box-shadow: var(--glow-purple);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-preview {
+    width: 100%;
+    height: 180px;
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .card:hover .card-preview img {
+    transform: scale(1.05);
+  }
+
+  .card-preview .placeholder {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    opacity: 0.15;
+    color: var(--accent-cyan);
+  }
+
+  .card-preview .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(10,14,26,0.9) 100%);
+  }
+
+  .card-preview .visit-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    padding: 10px 24px;
+    background: rgba(0,240,255,0.15);
+    border: 1px solid var(--accent-cyan);
+    border-radius: 8px;
+    color: var(--accent-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    text-decoration: none;
+    z-index: 2;
+  }
+
+  .card:hover .visit-btn {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .visit-btn:hover {
+    background: rgba(0,240,255,0.3);
+    box-shadow: var(--glow-cyan);
+  }
+
+  .card-body {
+    padding: 18px 22px;
+  }
+
+  .card-body h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-body .desc {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .card-body .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    padding: 3px 10px;
+    background: rgba(0,240,255,0.08);
+    border: 1px solid rgba(0,240,255,0.2);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-cyan);
+  }
+
+  .tag.purple {
+    background: rgba(168,85,247,0.08);
+    border-color: rgba(168,85,247,0.2);
+    color: var(--accent-purple);
+  }
+
+  .monitor-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .stat {
+    text-align: center;
+    padding: 8px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+  }
+
+  .stat .label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .stat .value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .stat .value.green { color: var(--accent-green); }
+  .stat .value.yellow { color: var(--accent-yellow); }
+  .stat .value.red { color: var(--accent-red); }
+  .stat .value.cyan { color: var(--accent-cyan); }
+
+  .uptime-bar {
+    height: 6px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .uptime-bar .fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1.5s ease;
+    background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+  }
+
+  .status-badge.online {
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: var(--accent-green);
+  }
+
+  .status-badge.warning {
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.3);
+    color: var(--accent-yellow);
+  }
+
+  .status-badge.offline {
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: var(--accent-red);
+  }
+
+  .footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  @media (max-width: 900px) {
+    .header h1 { font-size: 1.8rem; }
+    .columns-header, .project-row {
+      grid-template-columns: 1fr;
+    }
+    .columns-header { display: none; }
+    .main { padding: 10px 15px 40px; }
+    .card-preview { height: 140px; }
+  }
+
+  .project-row:nth-child(1) { animation-delay: 0.1s; }
+  .project-row:nth-child(2) { animation-delay: 0.2s; }
+  .project-row:nth-child(3) { animation-delay: 0.3s; }
+  .project-row:nth-child(4) { animation-delay: 0.4s; }
+  .project-row:nth-child(5) { animation-delay: 0.5s; }
+  .project-row:nth-child(6) { animation-delay: 0.6s; }
+  .project-row:nth-child(7) { animation-delay: 0.7s; }
+  .project-row:nth-child(8) { animation-delay: 0.8s; }
+
+  .no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    display: none;
+  }
+
+  .no-results .icon { font-size: 3rem; margin-bottom: 15px; opacity: 0.3; }
+</style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<header class="header">
+  <h1>林博AI</h1>
+  <p class="subtitle">// 專案監控總站 &mdash; LinBo AI Command Center</p>
+  <div class="status-bar">
+    <div class="status-item">
+      <span class="status-dot green"></span>
+      <span id="onlineCount">0</span> Online
+    </div>
+    <div class="status-item">
+      <span class="status-dot yellow"></span>
+      <span id="warningCount">0</span> Warning
+    </div>
+    <div class="status-item">
+      <span class="status-dot red"></span>
+      <span id="offlineCount">0</span> Offline
+    </div>
+    <div class="status-item" style="color: var(--accent-cyan);">
+      <span>&#9201;</span>
+      <span id="currentTime"></span>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="search-box">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="searchInput" placeholder="搜尋專案名稱、標籤...">
+  </div>
+  <button class="filter-btn active" data-filter="all">ALL</button>
+  <button class="filter-btn" data-filter="online">ONLINE</button>
+  <button class="filter-btn" data-filter="warning">WARNING</button>
+  <button class="filter-btn" data-filter="offline">OFFLINE</button>
+</div>
+
+<div class="main">
+  <div class="columns-header">
+    <div class="col-label projects">
+      <span class="icon">&#127760;</span> 專案網站 PROJECT SITES
+    </div>
+    <div class="col-label monitors">
+      <span class="icon">&#128225;</span> 監控系統 MONITORING
+    </div>
+  </div>
+
+  <div class="project-list" id="projectList"></div>
+
+  <div class="no-results" id="noResults">
+    <div class="icon">&#128269;</div>
+    <p>找不到符合條件的專案</p>
+  </div>
+</div>
+
+<footer class="footer">
+  &copy; 2026 林博AI &mdash; All Rights Reserved
+</footer>
+
+<script>
+// ============================================
+// DATA: 在這裡編輯你的專案資料
+// ============================================
+const projects = [
+  {
+    id: 1,
+    name: "林博宇點餐系統",
+    desc: "線上點餐平台，顧客可瀏覽菜單、下單點餐，支援即時訂單管理",
+    url: "https://linboyu-ordering.onrender.com/",
+    monitorUrl: "https://linboyu-ordering.onrender.com/",
+    tags: ["HTML", "CSS", "JavaScript", "Render"],
+    status: "online",
+    uptime: 99.90,
+    responseTime: 180,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 2,
+    name: "DigiChef 數位廚師加盟系統",
+    desc: "餐飲加盟管理平台，提供加盟商資訊、品牌管理與營運數據整合",
+    url: "https://digichef-franchise.onrender.com/",
+    monitorUrl: "https://digichef-franchise.onrender.com/",
+    tags: ["HTML", "CSS", "JavaScript", "Render"],
+    status: "online",
+    uptime: 99.85,
+    responseTime: 195,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 3,
+    name: "貼文監控儀表板",
+    desc: "社群貼文監控 Dashboard，即時追蹤貼文狀態、數據分析與警示通知",
+    url: "https://809540023-lgtm.github.io/post-monitor-dashboard/",
+    monitorUrl: "https://809540023-lgtm.github.io/post-monitor-dashboard/",
+    tags: ["GitHub Pages", "Dashboard", "Monitor"],
+    status: "online",
+    uptime: 99.99,
+    responseTime: 45,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 4,
+    name: "ろかいずみ 日本介護用品專賣",
+    desc: "日本介護用品電商平台，嚴選 220+ 件長照商品，涵蓋拐杖、助行器、輪椅、入浴照護等全系列品項",
+    url: "https://rokaizumi-tw.jp",
+    monitorUrl: "https://rokaizumi-tw.jp",
+    tags: ["電商平台", "介護用品", "Web"],
+    status: "online",
+    uptime: 99.92,
+    responseTime: 120,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 5,
+    name: "點餐系統 後台管理",
+    desc: "點餐系統管理後台，支援菜單編輯、訂單管理、營收報表等功能",
+    url: "https://linboyu-ordering.onrender.com/admin.html",
+    monitorUrl: "https://linboyu-ordering.onrender.com/admin.html",
+    tags: ["Admin", "後台管理", "Render"],
+    status: "online",
+    uptime: 99.90,
+    responseTime: 185,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 6,
+    name: "員工排班打卡系統",
+    desc: "員工排班與打卡管理平台，支援管理員設定時段、員工填寫可上班時間與上下班打卡記錄",
+    url: "https://employee-scheduling-system-fuky.onrender.com/",
+    monitorUrl: "https://employee-scheduling-system-fuky.onrender.com/",
+    tags: ["排班系統", "打卡", "Render"],
+    status: "online",
+    uptime: 99.88,
+    responseTime: 190,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 7,
+    name: "iCombi Pro 冷凍食材烹飪資料庫",
+    desc: "Rational iCombi Pro 冷凍食材烹飪參考手冊，收錄53道菜品及醬料配方庫、原料採購清單",
+    url: "https://icombi-recipe-db.onrender.com/",
+    monitorUrl: "https://icombi-recipe-db.onrender.com/",
+    tags: ["烹飪資料庫", "iCombi Pro", "Render"],
+    status: "online",
+    uptime: 99.90,
+    responseTime: 175,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 8,
+    name: "FB 自動發文儀表板",
+    desc: "Facebook 社團自動發文監控儀表板，追蹤發文成功率、社團成效排行與歷史趨勢",
+    url: "https://fb-poster-dashboard.onrender.com/",
+    monitorUrl: "https://fb-poster-dashboard.onrender.com/",
+    tags: ["Facebook", "自動發文", "Supabase"],
+    status: "online",
+    uptime: 99.85,
+    responseTime: 200,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 9,
+    name: "FB 商品監控系統",
+    desc: "Facebook Marketplace 商品價格監控，AI 估價比對、價格分佈分析與匯出 CSV 功能",
+    url: "https://fb-marketplace-monitor.onrender.com/",
+    monitorUrl: "https://fb-marketplace-monitor.onrender.com/",
+    tags: ["Marketplace", "價格監控", "Python"],
+    status: "online",
+    uptime: 99.92,
+    responseTime: 165,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 10,
+    name: "CrewAI 二手生財餐飲器具營運看板",
+    desc: "CrewAI 多組 Agent 營運系統，自動抓取、補資料、產出 Threads 社群草稿並寫入 Supabase",
+    url: "https://crewai1-api.onrender.com/",
+    monitorUrl: "https://crewai1-api.onrender.com/",
+    tags: ["CrewAI", "Agent", "Supabase"],
+    status: "online",
+    uptime: 99.80,
+    responseTime: 210,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 11,
+    name: "最新入庫批發專區",
+    desc: "二手生財餐飲器具最新入庫商品展示，AI 辨識品名、建議售價，方便同行批發詢價上架",
+    url: "https://crewai1-api.onrender.com/inventory/latest",
+    monitorUrl: "https://crewai1-api.onrender.com/inventory/latest",
+    tags: ["批發專區", "入庫管理", "Render"],
+    status: "online",
+    uptime: 99.80,
+    responseTime: 215,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 12,
+    name: "古吉點餐機壓縮器",
+    desc: "點餐機專用圖片壓縮工具，輸出 354×274 像素，支援 JPG/PNG/WebP 格式轉換與品質調整",
+    url: "https://809540023-lgtm.github.io/guji-compressor/",
+    monitorUrl: "https://809540023-lgtm.github.io/guji-compressor/",
+    tags: ["圖片壓縮", "點餐機", "GitHub Pages"],
+    status: "online",
+    uptime: 99.99,
+    responseTime: 40,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 13,
+    name: "Knowpia APAC 核心會員教育平台",
+    desc: "Web3 與 RWA 產業趨勢核心會員專屬教育平台，提供高階課程、產業脈動追蹤與會員權益管理",
+    url: "https://knowpiaedu-7zgcoa5v.manus.space",
+    monitorUrl: "https://knowpiaedu-7zgcoa5v.manus.space",
+    tags: ["Web3", "RWA", "Manus"],
+    status: "online",
+    uptime: 99.95,
+    responseTime: 130,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 14,
+    name: "股票分批賣出與回補模擬器",
+    desc: "輸入持股、價格路徑與多筆買賣規則，模擬漲賣跌補策略，比較總資產與持有不動的差異",
+    url: "https://stock-rebalance-simulator.onrender.com/",
+    monitorUrl: "https://stock-rebalance-simulator.onrender.com/",
+    tags: ["股票模擬", "投資工具", "Render"],
+    status: "online",
+    uptime: 99.90,
+    responseTime: 180,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 15,
+    name: "Boron 材料投資研究 APP",
+    desc: "Boron 相關原料與供應鏈投資研究平台，整合元素資料、公司雷達、投資情境追蹤與訊息傳播功能",
+    url: "https://boron-stock-radar.onrender.com",
+    monitorUrl: "https://boron-stock-radar.onrender.com",
+    tags: ["投資研究", "材料科學", "Render"],
+    status: "online",
+    uptime: 99.85,
+    responseTime: 200,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 16,
+    name: "神公司 Shen Co. 商業計畫",
+    desc: "AI 生態經濟第 11.5 層 Enabler 商業計畫展示，涵蓋四大模組、十二層架構、進場策略與核心團隊介紹",
+    url: "https://shen-co.onrender.com",
+    monitorUrl: "https://shen-co.onrender.com",
+    tags: ["商業計畫", "AI Enabler", "Render"],
+    status: "online",
+    uptime: 99.90,
+    responseTime: 160,
+    lastIncident: "穩定運行中"
+  },
+  {
+    id: 17,
+    name: "穩定幣購買美股開戶教學",
+    desc: "博士論文教學展示系統，拆解穩定幣換美元、券商開戶、代幣化股票三種交易模式與合規檢核流程",
+    url: "https://stable-stock-guide.onrender.com/",
+    monitorUrl: "https://stable-stock-guide.onrender.com/",
+    tags: ["教學系統", "穩定幣", "Render"],
+    status: "online",
+    uptime: 99.90,
+    responseTime: 170,
+    lastIncident: "穩定運行中"
+  }
+];
+
+// ============================================
+// RENDER
+// ============================================
+function renderProjects(filteredProjects) {
+  const list = document.getElementById('projectList');
+  const noResults = document.getElementById('noResults');
+  list.innerHTML = '';
+
+  if (filteredProjects.length === 0) {
+    noResults.style.display = 'block';
+    return;
+  }
+  noResults.style.display = 'none';
+
+  filteredProjects.forEach((p, i) => {
+    const statusClass = p.status;
+    const statusLabel = p.status === 'online' ? '\u25cf ONLINE' : p.status === 'warning' ? '\u26a0 WARNING' : '\u2715 OFFLINE';
+    const uptimeColor = p.uptime >= 99.5 ? 'green' : p.uptime >= 98 ? 'yellow' : 'red';
+    const rtColor = p.responseTime === 0 ? 'red' : p.responseTime < 200 ? 'green' : p.responseTime < 500 ? 'yellow' : 'red';
+
+    const row = document.createElement('div');
+    row.className = 'project-row';
+    row.style.animationDelay = (i * 0.1) + 's';
+
+    row.innerHTML =
+      '<div class="card project">' +
+        '<div class="card-preview">' +
+          '<div class="placeholder">' + p.name.charAt(0) + '</div>' +
+          '<div class="overlay"></div>' +
+          '<a href="' + p.url + '" target="_blank" class="visit-btn">&#9654; \u524d\u5f80\u7db2\u7ad9</a>' +
+        '</div>' +
+        '<div class="card-body">' +
+          '<h3>&#127760; ' + p.name + '</h3>' +
+          '<p class="desc">' + p.desc + '</p>' +
+          '<div class="tags">' +
+            p.tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="card monitor">' +
+        '<div class="card-body" style="padding-top: 22px;">' +
+          '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">' +
+            '<h3>&#128225; ' + p.name + ' \u76e3\u63a7</h3>' +
+            '<span class="status-badge ' + statusClass + '">' + statusLabel + '</span>' +
+          '</div>' +
+          '<div class="monitor-stats">' +
+            '<div class="stat"><div class="label">Uptime</div><div class="value ' + uptimeColor + '">' + p.uptime + '%</div></div>' +
+            '<div class="stat"><div class="label">Response</div><div class="value ' + rtColor + '">' + (p.responseTime ? p.responseTime + 'ms' : 'N/A') + '</div></div>' +
+            '<div class="stat"><div class="label">Last Issue</div><div class="value cyan" style="font-size:0.75rem;">' + p.lastIncident + '</div></div>' +
+          '</div>' +
+          '<div class="uptime-bar"><div class="fill" style="width: ' + p.uptime + '%;"></div></div>' +
+          '<div style="display: flex; justify-content: space-between; align-items: center;">' +
+            '<div class="tags">' +
+              '<span class="tag purple">24/7 Monitor</span>' +
+              '<span class="tag purple">Alert</span>' +
+            '</div>' +
+            '<a href="' + p.monitorUrl + '" target="_blank" style="padding:6px 14px;font-size:0.75rem;background:rgba(168,85,247,0.15);border:1px solid var(--accent-purple);border-radius:8px;color:var(--accent-purple);font-family:JetBrains Mono,monospace;text-decoration:none;transition:all 0.3s;">&#128202; \u67e5\u770b\u76e3\u63a7</a>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+    list.appendChild(row);
+  });
+}
+
+// ============================================
+// SEARCH & FILTER
+// ============================================
+var currentFilter = 'all';
+
+function applyFilters() {
+  var query = document.getElementById('searchInput').value.toLowerCase().trim();
+  var filtered = projects;
+
+  if (currentFilter !== 'all') {
+    filtered = filtered.filter(function(p) { return p.status === currentFilter; });
+  }
+
+  if (query) {
+    filtered = filtered.filter(function(p) {
+      return p.name.toLowerCase().indexOf(query) !== -1 ||
+             p.desc.toLowerCase().indexOf(query) !== -1 ||
+             p.tags.some(function(t) { return t.toLowerCase().indexOf(query) !== -1; });
+    });
+  }
+
+  renderProjects(filtered);
+}
+
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+document.querySelectorAll('.filter-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    applyFilters();
+  });
+});
+
+// ============================================
+// STATUS COUNTS
+// ============================================
+function updateStatusCounts() {
+  document.getElementById('onlineCount').textContent = projects.filter(function(p) { return p.status === 'online'; }).length;
+  document.getElementById('warningCount').textContent = projects.filter(function(p) { return p.status === 'warning'; }).length;
+  document.getElementById('offlineCount').textContent = projects.filter(function(p) { return p.status === 'offline'; }).length;
+}
+
+// ============================================
+// CLOCK
+// ============================================
+function updateClock() {
+  var now = new Date();
+  document.getElementById('currentTime').textContent = now.toLocaleTimeString('zh-TW', { hour12: false });
+}
+setInterval(updateClock, 1000);
+
+// ============================================
+// PARTICLES
+// ============================================
+function createParticles() {
+  var container = document.getElementById('particles');
+  for (var i = 0; i < 30; i++) {
+    var p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (8 + Math.random() * 12) + 's';
+    p.style.animationDelay = Math.random() * 10 + 's';
+    p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+    if (Math.random() > 0.5) p.style.background = 'var(--accent-purple)';
+    container.appendChild(p);
+  }
+}
+
+// ============================================
+// INIT
+// ============================================
+createParticles();
+updateStatusCounts();
+updateClock();
+renderProjects(projects);
+</script>
+</body>
+</html>
