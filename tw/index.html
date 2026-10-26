@@ -29,6 +29,7 @@
   <button class="tab" data-view="buyers">📋 買家名單</button>
   <button class="tab" data-view="sellers">🏪 收店線索</button>
   <button class="tab" data-view="groups">👥 FB 社團</button>
+  <button class="tab" data-view="sop">🎯 成交 SOP</button>
   <button class="tab" data-view="replies">💬 回覆範本</button>
   <button class="tab" data-view="directory">🗂 網站目錄</button>
 </nav>
@@ -114,6 +115,27 @@
     </div>
     <div class="chips" id="groupCats"></div>
     <div class="grouplist" id="groupList"></div>
+  </section>
+
+  <section id="view-sop" class="view">
+    <div class="notice">
+      <strong id="sopPrinciple">先問，不要先報價。</strong>
+      <span id="sopPrincipleWhy"></span>
+    </div>
+
+    <h3 class="sop-h3">五步流程</h3>
+    <div class="sop-steps" id="sopSteps"></div>
+
+    <h3 class="sop-h3">客戶這樣說，你這樣回</h3>
+    <div class="toolbar">
+      <input id="sopSearch" type="search" placeholder="搜尋客戶說的話…（例：便宜、運送、保固）" autocomplete="off">
+      <button id="sopExport" class="btn ghost">⬇ 下載 SOP</button>
+    </div>
+    <div class="sop-objections" id="sopObjections"></div>
+    <p class="empty" id="sopEmpty" hidden>沒有符合的句子</p>
+
+    <h3 class="sop-h3">絕對不要做的事</h3>
+    <ul class="sop-donts" id="sopDonts"></ul>
   </section>
 
   <section id="view-replies" class="view">
@@ -353,7 +375,7 @@
 <footer class="wrap">
   <p>庫存來源：Google Drive <code>11月底宜蘭倉庫庫存</code> · 更新 <span id="updated">—</span></p>
   <p class="tiny">套餐／名單／線索存在你這台裝置的瀏覽器，換裝置請用「匯出 CSV」備份。</p>
-  <p class="tiny">v3.2.0 · 0915888927.com/tw</p>
+  <p class="tiny">v3.3.0 · 0915888927.com/tw</p>
 </footer>
 
 <script src="app.js"></script>

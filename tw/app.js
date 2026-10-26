@@ -29,6 +29,8 @@ const state = {
   dirCat: '',
   dirQ: '',
   replyCat: '',
+  sop: null,
+  sopQ: '',
   buyerQ: '',
   buyerSort: false,
   sellerQ: '',
@@ -1499,6 +1501,113 @@ function renderReplies() {
   );
 }
 
+/* ================= 成交 SOP ================= */
+function renderSop() {
+  const sop = state.sop;
+  if (!sop) return;
+
+  $('#sopPrinciple').textContent = sop.principle || '';
+  $('#sopPrincipleWhy').textContent = sop.principleWhy || '';
+
+  $('#sopSteps').innerHTML = (sop.steps || [])
+    .map(
+      (st) => `<div class="sop-step">
+        <div class="sop-n">${st.n}</div>
+        <div class="sop-body">
+          <h4>${esc(st.title)}</h4>
+          <p class="sop-why">${esc(st.why)}</p>
+          <pre class="sop-say">${esc(st.say)}</pre>
+          <div class="sop-foot">
+            <span class="sop-tip">💡 ${esc(st.tip)}</span>
+            <button class="btn small" data-say="${st.n}">📋 複製這段</button>
+          </div>
+        </div>
+      </div>`
+    )
+    .join('');
+
+  $$('#sopSteps .sop-step button').forEach((b) =>
+    b.addEventListener('click', () => {
+      const st = (sop.steps || []).find((x) => String(x.n) === b.dataset.say);
+      if (st) copyText(st.say, b);
+    })
+  );
+
+  $('#sopDonts').innerHTML = (sop.donts || []).map((d) => `<li>${esc(d)}</li>`).join('');
+
+  renderSopObjections();
+}
+
+function renderSopObjections() {
+  const sop = state.sop;
+  if (!sop) return;
+  const q = state.sopQ.trim().toLowerCase();
+  const list = (sop.objections || []).filter(
+    (o) => !q || `${o.q} ${o.a} ${o.why}`.toLowerCase().includes(q)
+  );
+  $('#sopObjections').innerHTML = list
+    .map(
+      (o, i) => `<div class="sop-obj">
+        <div class="sop-obj-head">
+          <span class="sop-q">「${esc(o.q)}」</span>
+          <button class="btn small" data-i="${i}">📋 複製回覆</button>
+        </div>
+        <pre class="sop-a">${esc(o.a)}</pre>
+        <p class="sop-why-line">為什麼這樣回：${esc(o.why)}</p>
+      </div>`
+    )
+    .join('');
+  $('#sopEmpty').hidden = list.length > 0;
+  $$('#sopObjections .sop-obj button').forEach((b) =>
+    b.addEventListener('click', () => copyText(list[Number(b.dataset.i)].a, b))
+  );
+}
+
+function exportSop() {
+  const sop = state.sop;
+  if (!sop) return;
+  const L = [];
+  L.push('# 成交 SOP — 發完文之後怎麼回私訊');
+  L.push('');
+  L.push(`> ${sop.principle}`);
+  L.push(`> ${sop.principleWhy}`);
+  L.push('');
+  L.push('## 五步流程');
+  (sop.steps || []).forEach((st) => {
+    L.push('');
+    L.push(`### 第 ${st.n} 步：${st.title}`);
+    L.push('');
+    L.push(`**為什麼**：${st.why}`);
+    L.push('');
+    L.push('**照這樣說**：');
+    L.push('```');
+    L.push(st.say);
+    L.push('```');
+    L.push('');
+    L.push(`**小技巧**：${st.tip}`);
+  });
+  L.push('');
+  L.push('## 客戶這樣說，你這樣回');
+  (sop.objections || []).forEach((o) => {
+    L.push('');
+    L.push(`### 「${o.q}」`);
+    L.push('');
+    L.push('```');
+    L.push(o.a);
+    L.push('```');
+    L.push('');
+    L.push(`*為什麼這樣回：${o.why}*`);
+  });
+  L.push('');
+  L.push('## 絕對不要做的事');
+  (sop.donts || []).forEach((d) => L.push(`- ${d}`));
+  L.push('');
+  L.push(`---`);
+  L.push(`產生時間：${new Date().toLocaleString('zh-TW')}`);
+  L.push(`來源：0915888927.com/tw`);
+  download(new Blob([L.join('\n')], { type: 'text/markdown;charset=utf-8' }), '成交SOP_發完文怎麼回私訊.md');
+}
+
 /* ================= 網站目錄 ================= */
 function renderDirCats() {
   const cats = [...new Set(state.sites.map((s) => s.catLabel))];
@@ -1548,17 +1657,19 @@ async function init() {
   state.sellers = readLS(K.seller, []);
   state.posts = readLS(K.post, []);
 
-  const [inv, groups, sites, replies] = await Promise.all([
+  const [inv, groups, sites, replies, sop] = await Promise.all([
     fetch('data/inventory.json').then((r) => r.json()).catch(() => ({ items: [] })),
     fetch('data/groups.json').then((r) => r.json()).catch(() => ({ groups: [] })),
     fetch('data/sites.json').then((r) => r.json()).catch(() => []),
     fetch('data/replies.json').then((r) => r.json()).catch(() => ({ replies: [] })),
+    fetch('data/sop.json').then((r) => r.json()).catch(() => null),
   ]);
 
   state.items = inv.items || [];
   state.groups = groups.groups || [];
   state.sites = Array.isArray(sites) ? sites : [];
   state.replies = replies.replies || [];
+  state.sop = sop;
   $('#updated').textContent = inv.updated || '—';
 
   renderStats();
@@ -1572,6 +1683,7 @@ async function init() {
   renderGroupProductSelect();
   renderReplyCats();
   renderReplies();
+  renderSop();
   renderDirCats();
   renderDir();
 
@@ -1829,6 +1941,12 @@ async function init() {
   $('#postDownload').addEventListener('click', downloadCollage);
   $('#postDone').addEventListener('click', markPosted);
   $('#postNext').addEventListener('click', nextGroup);
+
+  $('#sopSearch').addEventListener('input', (e) => {
+    state.sopQ = e.target.value;
+    renderSopObjections();
+  });
+  $('#sopExport').addEventListener('click', exportSop);
 
   $('#dirSearch').addEventListener('input', (e) => {
     state.dirQ = e.target.value;

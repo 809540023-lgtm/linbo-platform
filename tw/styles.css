@@ -344,3 +344,127 @@ footer code { background: var(--bg2); padding: 1px 6px; border-radius: 5px; font
 .post-canvas-wrap canvas { max-width: 100%; height: auto; border-radius: 6px; display: block; }
 .badge.posted { background: #58a6ff22; color: #58a6ff; }
 .group-actions { display: flex; gap: 6px; flex: 0 0 auto; align-items: center; }
+
+/* ================= 成交 SOP ================= */
+.sop-h3 {
+  margin: 28px 0 12px;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+.sop-h3:first-of-type { margin-top: 20px; }
+
+.sop-steps { display: grid; gap: 14px; }
+
+.sop-step {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.sop-n {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1rem;
+  background: var(--accent);
+  color: #fff;
+}
+.sop-body h4 { margin: 0 0 6px; font-size: 1rem; }
+.sop-why {
+  margin: 0 0 10px;
+  font-size: 0.86rem;
+  line-height: 1.65;
+  color: var(--dim);
+}
+.sop-say {
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--fg);
+}
+.sop-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.sop-tip {
+  font-size: 0.8rem;
+  color: var(--dim);
+  flex: 1 1 240px;
+}
+
+.sop-objections { display: grid; gap: 12px; }
+
+.sop-obj {
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.sop-obj-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.sop-q {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--accent);
+}
+.sop-a {
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--bg);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--fg);
+}
+.sop-why-line {
+  margin: 10px 0 0;
+  font-size: 0.8rem;
+  color: var(--dim);
+  line-height: 1.6;
+}
+
+.sop-donts {
+  margin: 0;
+  padding: 16px 18px 16px 34px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid #e5484d;
+  border-radius: 12px;
+  display: grid;
+  gap: 9px;
+}
+.sop-donts li {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--fg);
+}
+
+@media (max-width: 640px) {
+  .sop-step { grid-template-columns: 1fr; }
+  .sop-n { width: 30px; height: 30px; font-size: 0.9rem; }
+}
