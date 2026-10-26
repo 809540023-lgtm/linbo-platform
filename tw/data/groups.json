@@ -1,0 +1,411 @@
+{
+  "updated": "2026-10-26",
+  "note": "kind=group 為搜尋結果中確認存在的社團網址；kind=search 為 FB 社團搜尋連結。成員數無法取得（FB 需登入）。",
+  "groups": [
+    {
+      "name": "宜蘭，礁溪，羅東地區，店面頂讓/店面出租，全新二手餐飲設備買賣",
+      "url": "https://www.facebook.com/groups/309450050575288/",
+      "cat": "地區（宜蘭）",
+      "kind": "group",
+      "members": null,
+      "priority": 1,
+      "note": "唯一「宜蘭在地 × 餐飲設備 × 頂讓」三合一。四門冰箱、工作台、水槽工作台這類無法寄送的重物只有這裡能成交。"
+    },
+    {
+      "name": "宜蘭餐飲設備器具二手買賣店面攤位頂讓交流專區",
+      "url": "https://www.facebook.com/groups/675922831228028/",
+      "cat": "地區（宜蘭）",
+      "kind": "group",
+      "members": null,
+      "priority": 2,
+      "note": "宜蘭＋餐飲設備專屬，貼文多為「便當店頂讓、設備生財器具完整」——會買整批設備的人。"
+    },
+    {
+      "name": "全台二手餐飲設備｜全店頂讓・盤讓・設備買賣批發交流平台",
+      "url": "https://www.facebook.com/groups/483427018970428/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": 3,
+      "note": "⭐ 社規明文歡迎「設備商」「批發」，倉庫賣家最不會被當廣告刪文。"
+    },
+    {
+      "name": "二手餐飲設備。開店撿便宜 流量大，更新快！",
+      "url": "https://www.facebook.com/groups/3032120796803024/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": 4,
+      "note": "流量最大、更新最快，適合曝光。⚠️ 同名克隆社團至少 4 個，發文前確認。"
+    },
+    {
+      "name": "北部二手餐飲設備 開店撿便宜",
+      "url": "https://www.facebook.com/groups/1225483970954367/",
+      "cat": "地區（北部）",
+      "kind": "group",
+      "members": null,
+      "priority": 5,
+      "note": "北部限定，競爭貼文少，宜蘭現貨有「可當日看貨」優勢。"
+    },
+    {
+      "name": "新品-中古-二手冷凍庫-冷藏庫-商用冰箱-自由買賣區",
+      "url": "https://www.facebook.com/groups/585474875821769/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": 6,
+      "note": "⭐ 純冷凍冷藏垂直社團，四門冰箱、玻璃冷藏冷凍櫃最精準。"
+    },
+    {
+      "name": "餐飲設備、商用冷凍冰箱、營業用冰箱、二手設備、全新品設備、烘培設備、冷凍設備、冷藏設備、冷飲設備、生財器具買賣交流群",
+      "url": "https://www.facebook.com/groups/861591825572670/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": 6,
+      "note": "⭐ 關鍵字完全對中營業用冰箱、保溫展示櫃。"
+    },
+    {
+      "name": "2二手生財器具買賣、餐飲設備交流買賣、頂讓、中古收購，店面規劃，人數最多",
+      "url": "https://www.facebook.com/groups/1854757618162369/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": 7,
+      "note": "自稱人數最多，新北。適合第二批補貼。"
+    },
+    {
+      "name": "6二手生財器具買賣、餐飲設備交流買賣、頂讓、中古收購，店面規劃，人數最多，嚴打詐騙",
+      "url": "https://www.facebook.com/groups/2399599920073486/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": 7,
+      "note": "與上者同集團分社，新北。"
+    },
+    {
+      "name": "宜蘭全新二手商品買賣",
+      "url": "https://www.facebook.com/groups/1506851356131862/",
+      "cat": "地區（宜蘭）",
+      "kind": "group",
+      "members": null,
+      "priority": 8,
+      "note": "宜蘭在地流量池大。適合椅子、保溫箱、煮飯鍋這類一般人也會買的品項。"
+    },
+    {
+      "name": "宜蘭全都賣",
+      "url": "https://www.facebook.com/groups/809577459157285/",
+      "cat": "地區（宜蘭）",
+      "kind": "group",
+      "members": null,
+      "priority": 8,
+      "note": "限制少，新品二手皆可，店家需留地址電話。"
+    },
+    {
+      "name": "二手生財器具買賣、餐飲設備交流買賣、頂讓、中古",
+      "url": "https://www.facebook.com/groups/1641120622830102/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "老牌綜合生財器具社團，活躍度高。"
+    },
+    {
+      "name": "二手生財器具買賣、餐飲設備買賣、寄賣、店面頂讓、中古收購～WST",
+      "url": "https://www.facebook.com/groups/250808412361422/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "有「寄賣」機制，適合倉庫批量出清。"
+    },
+    {
+      "name": "二手餐飲設備收購 開店設備買賣 生財器具買賣",
+      "url": "https://www.facebook.com/groups/177934806078925/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "全台北中南都收，製冰機/封口機/冰箱/洗碗機/咖啡機/桌椅碗盤。"
+    },
+    {
+      "name": "二手餐飲設備交易平台",
+      "url": "https://www.facebook.com/groups/546479622176236/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "名稱直白，精準買家。"
+    },
+    {
+      "name": "頂讓二手餐飲設備買賣",
+      "url": "https://www.facebook.com/groups/110040866379948/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "頂讓＋設備雙主題。"
+    },
+    {
+      "name": "上發二手餐飲設備買賣",
+      "url": "https://www.facebook.com/groups/417600738422143/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "設備商型社團。"
+    },
+    {
+      "name": "全新、二手餐飲設備，烘焙器具，咖啡器具，冷飲冷藏冷凍設備買賣",
+      "url": "https://www.facebook.com/groups/1937537056568256/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "涵蓋冷藏冷凍，與四門冰箱/玻璃冰箱高度相關。"
+    },
+    {
+      "name": "「二手餐飲設備買賣」及「全新中古 二手POS機」買賣",
+      "url": "https://www.facebook.com/groups/324319294771969/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "偏 POS/小吃店開店，客群為便當/麵店/攤車。"
+    },
+    {
+      "name": "台灣餐飲設備\\商用冰箱\\碗盤\\桌椅\\開店用品\\烘培設備\\頂讓店\\維修服務\\拍賣交流中心",
+      "url": "https://www.facebook.com/groups/378366656081693/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "名稱即完整品項清單，含 5 尺冷藏工作台冰箱貼文。"
+    },
+    {
+      "name": "全台店面頂讓、二手餐飲設備平台流量大/更新快速/加快交易速度/出清收購買賣交流",
+      "url": "https://www.facebook.com/groups/1976723239006453/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "全台流量型社團。"
+    },
+    {
+      "name": "愛買二手中古食品機械餐飲設備買賣 租賃交流（高價收購食品機械餐飲設備）",
+      "url": "https://www.facebook.com/groups/270527704124783/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "食品機械/烘焙設備為主，有租賃。"
+    },
+    {
+      "name": "二手餐飲設備 攤車 廚房用具",
+      "url": "https://www.facebook.com/groups/235207555458590/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "有「營業用上凍下藏四門冰箱」實際成交文。"
+    },
+    {
+      "name": "大台灣餐飲設備買賣，攤車買賣、商店頂讓、店面盤讓交流",
+      "url": "https://www.facebook.com/groups/3238488116443069/",
+      "cat": "餐飲設備",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "全台，含店面盤讓。"
+    },
+    {
+      "name": "台北桃園新竹苗栗~北部～新品/二手貨、餐飲設備、營業生財器具",
+      "url": "https://www.facebook.com/groups/443450712672465/",
+      "cat": "地區（北部）",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "北北桃竹苗，營業生財器具。"
+    },
+    {
+      "name": "雙北餐飲設備出售，全新/二手買賣，店面頂讓",
+      "url": "https://www.facebook.com/groups/686032605603650/",
+      "cat": "地區（北部）",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "雙北，禁直播/無關訊息。"
+    },
+    {
+      "name": "宜蘭二手買賣交流",
+      "url": "https://www.facebook.com/groups/1511485332435228/",
+      "cat": "地區（宜蘭）",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "純二手，管理員會審核刪除不符貼文。"
+    },
+    {
+      "name": "宜蘭中古家俱家電雜物買賣",
+      "url": "https://www.facebook.com/groups/458533444305366/",
+      "cat": "地區（宜蘭）",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "家具家電雜物，適合椅子/保溫箱等小家項。"
+    },
+    {
+      "name": "宜蘭 羅東 二手淘寶屋礁溪 頭城 蘇澳 冬山 壯圍 員山 五結 二結 三星",
+      "url": "https://www.facebook.com/groups/292771144427124/",
+      "cat": "地區（宜蘭）",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "覆蓋全宜蘭鄉鎮，有實體店面（羅東維揚路）。"
+    },
+    {
+      "name": "宜蘭羅東二手倉庫",
+      "url": "https://www.facebook.com/groups/530180357154230/",
+      "cat": "地區（宜蘭）",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "有餐飲設備貼文（益芳封口機），偏倉庫出清。"
+    },
+    {
+      "name": "頭城二手物品拍賣",
+      "url": "https://www.facebook.com/groups/1684217988467535/",
+      "cat": "地區（宜蘭）",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "頭城在地，小量品項。"
+    },
+    {
+      "name": "店面頂讓（整間店）",
+      "url": "https://www.facebook.com/groups/1334917756546226/",
+      "cat": "開店/頂讓",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "整店頂讓，買方多為「要開店、缺設備」。"
+    },
+    {
+      "name": "店面頂讓- 咖啡館，烘焙坊，早午餐，中西餐飲 等，頂讓專區",
+      "url": "https://www.facebook.com/groups/134303627107825/",
+      "cat": "開店/頂讓",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "餐飲頂讓專門，社規寫「專業餐飲設備收購，所有設備一併處理」。"
+    },
+    {
+      "name": "北台灣專業餐飲頂讓社團│租店面│找店面│開店面攏看過來",
+      "url": "https://www.facebook.com/groups/391240992335045/",
+      "cat": "開店/頂讓",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "基隆/雙北/桃園/新竹，餐飲店家為主。"
+    },
+    {
+      "name": "創業找店！頂讓、店面、小吃攤、工廠媒合平台",
+      "url": "https://www.facebook.com/groups/382543509418379/",
+      "cat": "開店/頂讓",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "小吃攤/店面媒合，開店客群。"
+    },
+    {
+      "name": "宜蘭縣市店面攤位出租",
+      "url": "https://www.facebook.com/groups/626022320860003/",
+      "cat": "開店/頂讓",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "宜蘭店面/攤位，有「設備及客源現成」類貼文。"
+    },
+    {
+      "name": "烘焙器具二手交流區",
+      "url": "https://www.facebook.com/groups/986796678005100/",
+      "cat": "家具/家電",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "開放門市冰箱、臥櫃冰箱、麵包架、收銀機等大型生財器具 → 對應發酵陳列架。"
+    },
+    {
+      "name": "烘焙器具全新/二手買賣市集",
+      "url": "https://www.facebook.com/groups/925566404206202/",
+      "cat": "家具/家電",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "烘焙器具，發酵箱/陳列架。"
+    },
+    {
+      "name": "台灣最大全新二手買賣交流平台",
+      "url": "https://www.facebook.com/groups/1674453666199238/",
+      "cat": "綜合二手",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "全台最大綜合二手社團之一。"
+    },
+    {
+      "name": "二手交流網",
+      "url": "https://www.facebook.com/groups/198503350253636/",
+      "cat": "綜合二手",
+      "kind": "group",
+      "members": null,
+      "priority": null,
+      "note": "綜合二手。"
+    },
+    {
+      "name": "搜尋：宜蘭 餐飲設備",
+      "url": "https://www.facebook.com/search/groups/?q=%E5%AE%9C%E8%98%AD%20%E9%A4%90%E9%A3%B2%E8%A8%AD%E5%82%99",
+      "cat": "地區（宜蘭）",
+      "kind": "search",
+      "members": null,
+      "priority": null,
+      "note": "FB 社團搜尋連結，需登入 FB 後點擊。"
+    },
+    {
+      "name": "搜尋：宜蘭 頂讓",
+      "url": "https://www.facebook.com/search/groups/?q=%E5%AE%9C%E8%98%AD%20%E9%A0%82%E8%AE%93",
+      "cat": "地區（宜蘭）",
+      "kind": "search",
+      "members": null,
+      "priority": null,
+      "note": "FB 社團搜尋連結，需登入 FB 後點擊。"
+    },
+    {
+      "name": "搜尋：營業用冰箱 二手",
+      "url": "https://www.facebook.com/search/groups/?q=%E7%87%9F%E6%A5%AD%E7%94%A8%E5%86%B0%E7%AE%B1%20%E4%BA%8C%E6%89%8B",
+      "cat": "餐飲設備",
+      "kind": "search",
+      "members": null,
+      "priority": null,
+      "note": "FB 社團搜尋連結，需登入 FB 後點擊。"
+    },
+    {
+      "name": "搜尋：發酵箱 陳列架",
+      "url": "https://www.facebook.com/search/groups/?q=%E7%99%BC%E9%85%B5%E7%AE%B1%20%E9%99%B3%E5%88%97%E6%9E%B6",
+      "cat": "家具/家電",
+      "kind": "search",
+      "members": null,
+      "priority": null,
+      "note": "FB 社團搜尋連結，需登入 FB 後點擊。"
+    },
+    {
+      "name": "搜尋：店面頂讓",
+      "url": "https://www.facebook.com/search/groups/?q=%E5%BA%97%E9%9D%A2%E9%A0%82%E8%AE%93",
+      "cat": "開店/頂讓",
+      "kind": "search",
+      "members": null,
+      "priority": null,
+      "note": "FB 社團搜尋連結，需登入 FB 後點擊。"
+    }
+  ]
+}

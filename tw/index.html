@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>二手雷達｜宜蘭倉庫 · 開店套餐 · 名單管理</title>
+<meta name="description" content="宜蘭倉庫二手餐飲設備：庫存、開店套餐報價單、買家名單、收店線索、FB 社團發文助手。">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>">
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <span class="logo">📡</span>
+      <div>
+        <h1>二手雷達</h1>
+        <p class="tag">宜蘭倉庫 · 二手餐飲設備 · 開店套餐 · 名單管理</p>
+      </div>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<nav class="tabs wrap" role="tablist">
+  <button class="tab active" data-view="stock">📦 庫存</button>
+  <button class="tab" data-view="packages">🎁 開店套餐</button>
+  <button class="tab" data-view="buyers">📋 買家名單</button>
+  <button class="tab" data-view="sellers">🏪 收店線索</button>
+  <button class="tab" data-view="groups">👥 FB 社團</button>
+  <button class="tab" data-view="replies">💬 回覆範本</button>
+  <button class="tab" data-view="directory">🗂 網站目錄</button>
+</nav>
+
+<main class="wrap">
+
+  <section id="view-stock" class="view active">
+    <div class="toolbar">
+      <input id="stockSearch" type="search" placeholder="搜尋品名、分類…" autocomplete="off">
+      <select id="stockStatus">
+        <option value="">全部狀態</option>
+        <option value="available">🟢 待售</option>
+        <option value="reserved">🟡 已保留</option>
+        <option value="sold">⚪ 已售出</option>
+      </select>
+      <button id="exportCsv" class="btn ghost">⬇ 匯出 CSV</button>
+    </div>
+    <div class="chips" id="stockCats"></div>
+    <div class="grid" id="stockGrid"></div>
+    <p class="empty" id="stockEmpty" hidden>沒有符合的商品</p>
+  </section>
+
+  <section id="view-packages" class="view">
+    <div class="notice">
+      <strong>套餐 = 你的成交武器。</strong>買家要的是「開一間店」，不是「一個冰箱」。
+      把庫存組成套餐 → 一鍵生成報價單圖片 → 私訊或貼社團。
+    </div>
+    <div class="toolbar">
+      <button id="newPackage" class="btn primary">＋ 新增套餐</button>
+      <span class="hint" id="pkgHint"></span>
+    </div>
+    <div class="grid" id="pkgGrid"></div>
+    <p class="empty" id="pkgEmpty">還沒有套餐。點「＋ 新增套餐」，自己拉品項進來。</p>
+  </section>
+
+  <section id="view-buyers" class="view">
+    <div class="notice">
+      <strong>每個私訊你的人都該進這張表。</strong>只問三題：要開什麼店 / 預算 / 什麼時候要。
+      填好需求品項後，系統會自動算配對分數（🔥熱／⭐溫／💤冷），點「💬 私訊」直接產出個人化訊息。
+    </div>
+    <div class="toolbar">
+      <button id="newBuyer" class="btn primary">＋ 新增買家</button>
+      <input id="buyerSearch" type="search" placeholder="搜尋姓名、店型、備註…" autocomplete="off">
+      <button id="buyerSort" class="btn ghost">🔥 依配對排序</button>
+      <button id="exportBuyers" class="btn ghost">⬇ CSV</button>
+    </div>
+    <div class="list" id="buyerList"></div>
+    <p class="empty" id="buyerEmpty">還沒有買家名單</p>
+  </section>
+
+  <section id="view-sellers" class="view">
+    <div class="notice">
+      <strong>收店的人比開店的人好找</strong>（租約到期、急著清空）。這條線跑順，你的進貨成本會再降。
+    </div>
+    <div class="toolbar">
+      <button id="newSeller" class="btn primary">＋ 新增收店線索</button>
+      <input id="sellerSearch" type="search" placeholder="搜尋店名、地區、備註…" autocomplete="off">
+      <button id="exportSellers" class="btn ghost">⬇ CSV</button>
+    </div>
+    <div class="list" id="sellerList"></div>
+    <p class="empty" id="sellerEmpty">還沒有收店線索</p>
+  </section>
+
+  <section id="view-groups" class="view">
+    <div class="notice">
+      <strong>發文助手</strong>：選商品或套餐 → 產生文案 → 複製 → 點社團「開啟」貼上。
+    </div>
+    <div class="toolbar">
+      <select id="groupProduct"><option value="">① 選擇商品或套餐…</option></select>
+      <button id="genPost" class="btn primary">② 產生文案</button>
+    </div>
+    <div class="postbox" id="postbox" hidden>
+      <div class="postbox-head">
+        <span>貼文文案</span>
+        <div>
+          <button id="copyPost" class="btn small">📋 複製</button>
+          <button id="editPost" class="btn small ghost">✏️ 編輯</button>
+        </div>
+      </div>
+      <textarea id="postText" spellcheck="false"></textarea>
+      <p class="hint" id="copyHint"></p>
+    </div>
+    <div class="chips" id="groupCats"></div>
+    <div class="grouplist" id="groupList"></div>
+  </section>
+
+  <section id="view-replies" class="view">
+    <div class="notice">
+      <strong>把重複的問題變成罐頭訊息。</strong>點「複製」貼到 LINE / FB 私訊。
+      下面每一條都可以直接設成 LINE OA 關鍵字自動回覆。
+    </div>
+    <div class="chips" id="replyCats"></div>
+    <div class="replylist" id="replyList"></div>
+  </section>
+
+  <section id="view-directory" class="view">
+    <div class="toolbar">
+      <input id="dirSearch" type="search" placeholder="搜尋二手網站目錄…" autocomplete="off">
+    </div>
+    <div class="chips" id="dirCats"></div>
+    <div class="dirlist" id="dirList"></div>
+  </section>
+
+</main>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="關閉">✕</button>
+    <div class="gallery">
+      <div class="gallery-main"><img id="mImg" alt=""></div>
+      <div class="gallery-thumbs" id="mThumbs"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-title">
+        <h2 id="mName"></h2>
+        <span class="badge" id="mStatus"></span>
+      </div>
+      <p class="mcat" id="mCat"></p>
+      <div class="fields">
+        <label>售價 (NT$)<input id="mPrice" type="number" min="0" placeholder="未定價"></label>
+        <label>數量<input id="mQty" type="number" min="0" placeholder="1"></label>
+        <label>規格 / 尺寸<input id="mSpecs" type="text" placeholder="例：長120×寬60×高80cm"></label>
+        <label>狀態
+          <select id="mStatusSel">
+            <option value="available">🟢 待售</option>
+            <option value="reserved">🟡 已保留</option>
+            <option value="sold">⚪ 已售出</option>
+          </select>
+        </label>
+      </div>
+      <label class="full">備註 / 說明<textarea id="mDesc" rows="3" placeholder="例：功能正常，外觀有使用痕跡，可現場試機"></textarea></label>
+      <div class="modal-actions">
+        <button id="mGen" class="btn primary">📝 產生文案</button>
+        <button id="mCopy" class="btn">📋 複製文案</button>
+        <button id="mShare" class="btn ghost">🔗 複製商品連結</button>
+        <button id="mGroups" class="btn ghost">👥 去社團發文</button>
+      </div>
+      <p class="hint" id="mHint"></p>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="pkgModal" hidden>
+  <div class="modal-card">
+    <button class="modal-close" id="pkgClose" aria-label="關閉">✕</button>
+    <div class="modal-body">
+      <h2 class="modal-h2" id="pkgTitle">新增套餐</h2>
+      <div class="fields">
+        <label>套餐名稱<input id="pkgName" type="text" placeholder="例：早餐店開店套餐"></label>
+        <label>店型<input id="pkgType" type="text" placeholder="例：早餐店 / 飲料店 / 小吃店"></label>
+        <label>套餐價 (NT$)<input id="pkgPrice" type="number" min="0" placeholder="例：150000"></label>
+      </div>
+      <label class="full">說明<textarea id="pkgNote" rows="2" placeholder="例：含運送安裝，可現場試機"></textarea></label>
+
+      <div class="picker-head">
+        <span>選擇品項</span>
+        <span class="picker-sum" id="pkgSum">原價合計 NT$0</span>
+      </div>
+      <div class="picker" id="pkgPicker"></div>
+
+      <div class="modal-actions">
+        <button id="pkgSave" class="btn primary">💾 儲存</button>
+        <button id="pkgQuote" class="btn">🖼 產生報價單圖片</button>
+        <button id="pkgCopyText" class="btn ghost">📋 複製報價文字</button>
+        <button id="pkgShare" class="btn ghost">🔗 複製連結</button>
+        <button id="pkgDelete" class="btn danger" hidden>🗑 刪除</button>
+      </div>
+      <p class="hint" id="pkgHint2"></p>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="buyerModal" hidden>
+  <div class="modal-card narrow">
+    <button class="modal-close" id="buyerClose" aria-label="關閉">✕</button>
+    <div class="modal-body">
+      <h2 class="modal-h2" id="buyerTitle">新增買家</h2>
+      <div class="fields">
+        <label>稱呼<input id="bName" type="text" placeholder="例：王先生 / 小美"></label>
+        <label>聯絡方式<input id="bContact" type="text" placeholder="LINE ID / 電話"></label>
+        <label>要開什麼店<input id="bType" type="text" placeholder="例：早餐店"></label>
+        <label>預算 (NT$)<input id="bBudget" type="number" min="0" placeholder="例：150000"></label>
+        <label>預計開幕<input id="bTimeline" type="text" placeholder="例：11月底 / 過年後"></label>
+        <label>狀態
+          <select id="bStatus">
+            <option value="new">🆕 新名單</option>
+            <option value="contacted">📞 已聯繫</option>
+            <option value="quoted">💰 已報價</option>
+            <option value="won">✅ 成交</option>
+            <option value="lost">❌ 流失</option>
+          </select>
+        </label>
+      </div>
+      <div class="picker-head"><span>需要哪些品項</span></div>
+      <div class="picker" id="bNeeds"></div>
+      <label class="full">備註<textarea id="bNote" rows="2" placeholder="例：店面在羅東，12月要開"></textarea></label>
+      <div class="modal-actions">
+        <button id="bSave" class="btn primary">💾 儲存</button>
+        <button id="bDelete" class="btn danger" hidden>🗑 刪除</button>
+      </div>
+      <p class="hint" id="bHint"></p>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="sellerModal" hidden>
+  <div class="modal-card narrow">
+    <button class="modal-close" id="sellerClose" aria-label="關閉">✕</button>
+    <div class="modal-body">
+      <h2 class="modal-h2" id="sellerTitle">新增收店線索</h2>
+      <div class="fields">
+        <label>店名<input id="sShop" type="text" placeholder="例：XX早餐店"></label>
+        <label>地區<input id="sArea" type="text" placeholder="例：宜蘭市 / 羅東"></label>
+        <label>聯絡人<input id="sContact" type="text" placeholder="例：陳太太"></label>
+        <label>電話 / LINE<input id="sPhone" type="text" placeholder="09xx-xxx-xxx"></label>
+        <label>店型<input id="sType" type="text" placeholder="例：早餐店"></label>
+        <label>預計收店<input id="sClose" type="text" placeholder="例：11月底 / 租約到期"></label>
+        <label>對方開價 (NT$)<input id="sAsk" type="number" min="0" placeholder="例：50000"></label>
+        <label>狀態
+          <select id="sStatus">
+            <option value="new">🆕 待聯繫</option>
+            <option value="visited">👀 已看貨</option>
+            <option value="negotiating">🤝 議價中</option>
+            <option value="bought">✅ 已收購</option>
+            <option value="dropped">❌ 放棄</option>
+          </select>
+        </label>
+      </div>
+      <div class="picker-head"><span>有哪些設備</span></div>
+      <div class="picker" id="sEquip"></div>
+      <label class="full">備註<textarea id="sNote" rows="2" placeholder="例：整間收，含裝潢，急著清空"></textarea></label>
+      <div class="modal-actions">
+        <button id="sSave" class="btn primary">💾 儲存</button>
+        <button id="sDelete" class="btn danger" hidden>🗑 刪除</button>
+      </div>
+      <p class="hint" id="sHint"></p>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="dmModal" hidden>
+  <div class="modal-card narrow">
+    <button class="modal-close" id="dmClose" aria-label="關閉">✕</button>
+    <div class="modal-body">
+      <h2 class="modal-h2" id="dmTitle">私訊文案</h2>
+      <p class="hint" id="dmMatch"></p>
+      <div class="picker-head"><span>要放進訊息的品項</span><span class="picker-sum" id="dmSum">NT$0</span></div>
+      <div class="picker" id="dmItems"></div>
+      <div class="postbox" style="margin-top:14px">
+        <div class="postbox-head">
+          <span>私訊內容</span>
+          <div>
+            <button id="dmCopy" class="btn small">📋 複製</button>
+            <button id="dmQuote" class="btn small ghost">🖼 報價單</button>
+          </div>
+        </div>
+        <textarea id="dmText" spellcheck="false" rows="12"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button id="dmRegen" class="btn">🔄 重新產生</button>
+        <button id="dmMark" class="btn ghost">📞 標記已聯繫</button>
+      </div>
+      <p class="hint" id="dmHint"></p>
+    </div>
+  </div>
+</div>
+
+<footer class="wrap">
+  <p>庫存來源：Google Drive <code>11月底宜蘭倉庫庫存</code> · 更新 <span id="updated">—</span></p>
+  <p class="tiny">套餐／名單／線索存在你這台裝置的瀏覽器，換裝置請用「匯出 CSV」備份。</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

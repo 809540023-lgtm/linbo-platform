@@ -1,0 +1,288 @@
+{
+  "updated": "2026-10-25",
+  "source": "gdrive:11月底宜蘭倉庫庫存",
+  "location": "宜蘭倉庫",
+  "items": [
+    {
+      "id": "worktable",
+      "name": "工作台",
+      "cat": "工作台",
+      "photos": [
+        "images/inventory/worktable/01.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "worktable-fridge",
+      "name": "工作台冰箱",
+      "cat": "冷藏冷凍",
+      "photos": [
+        "images/inventory/worktable-fridge/01.jpg",
+        "images/inventory/worktable-fridge/02.jpg",
+        "images/inventory/worktable-fridge/03.jpg",
+        "images/inventory/worktable-fridge/04.jpg",
+        "images/inventory/worktable-fridge/05.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "push-cart",
+      "name": "外推營業用車台",
+      "cat": "工作台",
+      "photos": [
+        "images/inventory/push-cart/01.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "gas-stove",
+      "name": "瓦斯爐台",
+      "cat": "烹調設備",
+      "photos": [
+        "images/inventory/gas-stove/01.jpg",
+        "images/inventory/gas-stove/02.jpg",
+        "images/inventory/gas-stove/03.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "warming-table",
+      "name": "多功能保溫工作台",
+      "cat": "保溫設備",
+      "photos": [
+        "images/inventory/warming-table/01.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "warming-box",
+      "name": "保溫箱",
+      "cat": "保溫設備",
+      "photos": [
+        "images/inventory/warming-box/01.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "glass-fridge",
+      "name": "玻璃冷凍冷藏冰箱",
+      "cat": "冷藏冷凍",
+      "photos": [
+        "images/inventory/glass-fridge/01.jpg",
+        "images/inventory/glass-fridge/02.jpg",
+        "images/inventory/glass-fridge/03.jpg",
+        "images/inventory/glass-fridge/04.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "sink-worktable",
+      "name": "訂做水槽工作台",
+      "cat": "工作台",
+      "photos": [
+        "images/inventory/sink-worktable/01.jpg",
+        "images/inventory/sink-worktable/02.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "furniture",
+      "name": "家具類",
+      "cat": "家具",
+      "photos": [
+        "images/inventory/furniture/01.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "appliance",
+      "name": "家電類",
+      "cat": "家電",
+      "photos": [
+        "images/inventory/appliance/01.jpg",
+        "images/inventory/appliance/02.jpg",
+        "images/inventory/appliance/03.jpg",
+        "images/inventory/appliance/04.jpg",
+        "images/inventory/appliance/05.jpg",
+        "images/inventory/appliance/06.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "chairs",
+      "name": "椅子",
+      "cat": "家具",
+      "photos": [
+        "images/inventory/chairs/01.jpg",
+        "images/inventory/chairs/02.jpg",
+        "images/inventory/chairs/03.jpg",
+        "images/inventory/chairs/04.jpg",
+        "images/inventory/chairs/05.jpg",
+        "images/inventory/chairs/06.jpg",
+        "images/inventory/chairs/07.jpg",
+        "images/inventory/chairs/08.jpg",
+        "images/inventory/chairs/09.jpg",
+        "images/inventory/chairs/10.jpg",
+        "images/inventory/chairs/11.jpg",
+        "images/inventory/chairs/12.jpg",
+        "images/inventory/chairs/13.jpg",
+        "images/inventory/chairs/14.jpg",
+        "images/inventory/chairs/15.jpg",
+        "images/inventory/chairs/16.jpg",
+        "images/inventory/chairs/17.jpg",
+        "images/inventory/chairs/18.jpg",
+        "images/inventory/chairs/19.jpg",
+        "images/inventory/chairs/20.jpg",
+        "images/inventory/chairs/21.jpg",
+        "images/inventory/chairs/22.jpg",
+        "images/inventory/chairs/23.jpg",
+        "images/inventory/chairs/24.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "rice-cooker",
+      "name": "煮飯鍋",
+      "cat": "烹調設備",
+      "photos": [
+        "images/inventory/rice-cooker/01.jpg",
+        "images/inventory/rice-cooker/02.jpg",
+        "images/inventory/rice-cooker/03.jpg",
+        "images/inventory/rice-cooker/04.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "display-rack",
+      "name": "發酵陳列架",
+      "cat": "陳列架",
+      "photos": [
+        "images/inventory/display-rack/01.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "steamer",
+      "name": "營業用蒸台",
+      "cat": "烹調設備",
+      "photos": [
+        "images/inventory/steamer/01.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "counter",
+      "name": "營業用櫃檯",
+      "cat": "櫃檯",
+      "photos": [
+        "images/inventory/counter/01.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    },
+    {
+      "id": "mixer",
+      "name": "攪拌機",
+      "cat": "烹調設備",
+      "photos": [
+        "images/inventory/mixer/01.jpg"
+      ],
+      "price": null,
+      "qty": null,
+      "condition": "二手",
+      "status": "available",
+      "desc": "",
+      "specs": "",
+      "location": "宜蘭倉庫"
+    }
+  ]
+}

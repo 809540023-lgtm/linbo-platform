@@ -1,0 +1,1712 @@
+[
+ {
+  "name": "蝦皮購物 Shopee",
+  "url": "https://shopee.tw",
+  "desc": "全台流量最大的電商平台，設有「二手」專區與大量個人賣家",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "露天市集 Ruten",
+  "url": "https://www.ruten.com.tw",
+  "desc": "台灣老牌 C2C 拍賣市集，二手與全新混售，個人賣場眾多",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "Yahoo 奇摩拍賣",
+  "url": "https://tw.bid.yahoo.com",
+  "desc": "台灣歷史最久的拍賣平台之一，二手 3C、收藏品交易活躍",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "旋轉拍賣 Carousell",
+  "url": "https://tw.carousell.com",
+  "desc": "新加坡商 C2C 平台，主打「拍照即上架」的二手交易",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "Mobile01 小惡魔市集",
+  "url": "https://www.mobile01.com/marketindex.php",
+  "desc": "3C 論壇 Mobile01 的官方二手交易市集，以相機、電腦、手機為主",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "PTT `forsale` 板",
+  "url": "https://www.pttweb.cc/bbs/forsale",
+  "desc": "PTT 官方買賣板，**目前已設為唯讀**（停止發文），僅可瀏覽存檔",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "蚤樂趣 SoFun",
+  "url": "https://www.sofun.com.tw",
+  "desc": "台灣跳蚤市場風格的二手交易網站",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "iOPEN Mall",
+  "url": "https://mall.iopenmall.tw/iopen/",
+  "desc": "統一超商 7-ELEVEN 推出的開店平台，含大量個人二手賣場",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "台灣二手市場",
+  "url": "https://www.kakafun.com/tw2hand",
+  "desc": "主打「發佈物品完全免費」的台灣專用二手分享平台",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "厝邊 MyNeighbor",
+  "url": "https://www.myneighbor.com.tw",
+  "desc": "以「身邊的二手拍賣」為定位，強調鄰里面交",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "二手吐司",
+  "url": "https://toas2t.com",
+  "desc": "台灣地區交易社群，除二手好物外還含領養與租屋",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "閒拍",
+  "url": "https://m.xianpai.shop",
+  "desc": "行動優先的二手買賣 App／網站",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "小圈子",
+  "url": "https://apps.apple.com/tw/app/id6473519916",
+  "desc": "PChome eBay 推出，限定「4 公里生活圈」的鄰近二手交易 App（無獨立官網）",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "2hand 二手貨交易網",
+  "url": "https://2hand.taiwanb2b.com.tw",
+  "desc": "台灣 B2B／B2C 二手貨交易媒合網站",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "GC 贈物網",
+  "url": "https://www.give-circle.com",
+  "desc": "以「無償贈送」為核心的物資循環平台（非買賣，但屬二手流通）",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "UniMarket 大學市集",
+  "url": "https://unimarket.tw",
+  "desc": "專供台灣大學生二手交易與校園生活交流的平台",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "再生工場",
+  "url": "https://www.shshop.me",
+  "desc": "自稱「台灣最多元的二手商城」，收購後整新轉售",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "",
+  "cat": "general",
+  "catLabel": "綜合二手交易平台"
+ },
+ {
+  "name": "8891 中古車",
+  "url": "https://auto.8891.com.tw",
+  "desc": "全台最大中古車交易平台，含實價登錄與行情查詢",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手車（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "SUM 汽車網",
+  "url": "https://www.sum.com.tw",
+  "desc": "匯豐集團旗下認證中古車聯盟，主打「保固＋鑑定」",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手車（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "SAVE 認證車聯盟",
+  "url": "https://www.isave.com.tw",
+  "desc": "裕隆集團旗下中古車認證聯盟",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手車（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "abc 好車網",
+  "url": "https://www.abccar.com.tw",
+  "desc": "和運租車（和泰）旗下，全台最大中古車交易平台之一",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手車（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "HOT 大聯盟",
+  "url": "https://www.hotcar.com.tw",
+  "desc": "認證優質中古車聯盟，全台加盟車商制",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手車（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "杰運汽車 Autostar",
+  "url": "https://www.jwincar.com.tw",
+  "desc": "北部知名中古車商，自營收購與販售",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手車（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "棋勝汽車",
+  "url": "https://www.cwgroup.com.tw",
+  "desc": "認證中古車／原廠二手車專營",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手車（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "小曾車庫",
+  "url": "https://www.littletsenggarage.com",
+  "desc": "中古車收購與估價服務",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手車（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "Carbook 車書",
+  "url": "https://carbook.tw",
+  "desc": "中古車線上估價、真實行情與保值分析工具",
+  "type": "聚合",
+  "verify": "verified",
+  "sub": "二手車（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "讀冊生活 TAAZE",
+  "url": "https://www.taaze.tw",
+  "desc": "台灣最大二手書網路書店，可「賣二手書」由平台代售",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手書（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "書寶二手書店",
+  "url": "https://www.spbook.com.tw",
+  "desc": "二手書買賣、書籍託售與公益捐贈",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手書（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "茉莉二手書店",
+  "url": "https://www.mollie.com.tw",
+  "desc": "全台連鎖實體二手書店，另有網路書店",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手書（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "雅博客二手書店",
+  "url": "https://www.yabook.com.tw",
+  "desc": "老字號二手書店，含實體門市與線上商城",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手書（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "胡思二手書店 WhoseBooks",
+  "url": "https://www.whose-books.com",
+  "desc": "天母起家的二手書店，網路書店同步經營",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手書（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "PopChill 拍拍圈",
+  "url": "https://www.popchill.com",
+  "desc": "全台最大精品買賣平台，主打 AI 鑑定與安心購",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手精品／名牌包（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "遠麗二手精品館",
+  "url": "https://www.lv888.com.tw",
+  "desc": "Hermès／Chanel／LV／Dior 名牌包收購與買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手精品／名牌包（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "BRAND 楓月",
+  "url": "https://brandfugetsu.com",
+  "desc": "日系二手名牌收購與販售",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手精品／名牌包（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "BRAND OFF 台灣",
+  "url": "https://www.brandoff.tw",
+  "desc": "日本最大名牌收購連鎖的台灣據點",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手精品／名牌包（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "JEWEL CAFE 台灣",
+  "url": "https://jewel-cafe.tw",
+  "desc": "日系珠寶、K 金、名牌包回收專門店",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手精品／名牌包（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "2ndSTREET 台灣",
+  "url": "https://www.2ndstreet.com.tw",
+  "desc": "日本最大二手服飾連鎖，台灣多間實體門市",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手服飾（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "2ndSTREET 網路商店",
+  "url": "https://store.2ndstreet.com.tw",
+  "desc": "2ndSTREET 台灣官方線上商店",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手服飾（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "二拾衫",
+  "url": "https://www.twentythree.com.tw",
+  "desc": "台灣二手衣電商，主打永續時尚與到府收購",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手服飾（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "香蕉貓 Banana Cats",
+  "url": "https://www.bananacats.com",
+  "desc": "台北古著／二手服飾選物店",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手服飾（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "A ROOM MODEL",
+  "url": "https://www.aroommodel.com",
+  "desc": "二手／古著選品店，含線上商店",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手服飾（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "US3C",
+  "url": "https://www.us3c.com.tw",
+  "desc": "iPhone／iPad／MacBook 二手收購估價，門市 3 分鐘入帳",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手 3C／手機（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "創宇通訊",
+  "url": "https://www.smart3c.com.tw",
+  "desc": "中古手機、福利品、展示機專賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手 3C／手機（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "創宇通訊（收購網）",
+  "url": "https://www.3c91.com.tw",
+  "desc": "手機回收與線上估價入口",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手 3C／手機（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "傑昇通信",
+  "url": "https://www.jyes.com.tw",
+  "desc": "全台連鎖通訊行，含二手機與空機買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手 3C／手機（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "地標網通",
+  "url": "https://www.landtop.com.tw",
+  "desc": "連鎖通訊行，手機空機與二手機交易",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手 3C／手機（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "iMCheck",
+  "url": "https://www.imcheck.com.tw",
+  "desc": "24H AI 自助手機回收機與檢測鎖價",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手 3C／手機（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "BUNNIT",
+  "url": "https://bunnit.ideamt.com",
+  "desc": "手機自助回收機台，快速估價與安全回收",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手 3C／手機（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "神腦二手估價",
+  "url": "https://helpcenter.senao.com.tw/SecondHand_Evaluate.php",
+  "desc": "神腦國際官方二手 3C 估價服務",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手 3C／手機（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "保衛站",
+  "url": "https://www.guardstation.com.tw",
+  "desc": "連鎖手機維修／二手機買賣，全台門市",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手 3C／手機（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "大和發二手家具",
+  "url": "https://www.dahefa.com.tw",
+  "desc": "高雄二手家具收購、回收二手電器",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手家電／家具（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "百大二手家電",
+  "url": "https://www.baidafurniture.com.tw",
+  "desc": "台北二手家電收購與二手家具第一推薦",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手家電／家具（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "宏品二手家具",
+  "url": "https://www.hongpin.tw",
+  "desc": "二手家具買賣與收購",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手家電／家具（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "日日二手家具",
+  "url": "https://168dayday.com",
+  "desc": "台中二手家具、二手家電收購公司",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手家電／家具（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "家友二手家具",
+  "url": "https://www.3557192.com.tw",
+  "desc": "台南二手家具／電器收購與搬運",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手家電／家具（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "避風港家具",
+  "url": "https://www.bfg.com.tw",
+  "desc": "桃園二手家具收購，雙北桃竹到府免費估價",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手家電／家具（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "永茂二手家具",
+  "url": "https://www.yong-mao.com.tw",
+  "desc": "二手家具收購與買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手家電／家具（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "伯樂二手家具",
+  "url": "https://www.bolefurniture.com.tw",
+  "desc": "台北二手家電收購與二手傢俱買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手家電／家具（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "北二高家具",
+  "url": "https://www.b-e-g.com.tw",
+  "desc": "新莊／台北二手家具買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手家電／家具（9）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "中古二手餐飲設備",
+  "url": "https://www.glk.com.tw",
+  "desc": "中古餐飲設備買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手餐飲設備（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "正興餐飲設備",
+  "url": "https://www.zhengxingshougou.com",
+  "desc": "五股二手餐飲設備收購",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手餐飲設備（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "DC 大晨餐飲設備",
+  "url": "https://www.dcce.com.tw",
+  "desc": "桃園餐飲設備買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手餐飲設備（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "全懋二手餐飲設備",
+  "url": "https://www.chmau.com.tw",
+  "desc": "彰化餐飲設備買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手餐飲設備（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "祥順餐飲設備",
+  "url": "http://cheungshun.com.tw",
+  "desc": "二手餐飲設備買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手餐飲設備（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "萬能中古倉",
+  "url": "https://www.x0905059331.com.tw",
+  "desc": "台北中古餐飲設備買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手餐飲設備（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "旺裕設備連鎖大賣場",
+  "url": "https://0915551887.com.tw",
+  "desc": "二手餐飲設備連鎖賣場",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手餐飲設備（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "YA! 玩音樂",
+  "url": "https://yamusic.com.tw",
+  "desc": "新北三峽樂器行，含二手樂器買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手樂器（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "DigiLog 聲響實驗室",
+  "url": "https://digilog.tw",
+  "desc": "錄音介面、MIDI、合成器專業店，設有二手市場專區",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手樂器（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "ATB 通伯樂器音響",
+  "url": "https://www.atb1987.tw",
+  "desc": "老字號樂器音響行，含中古買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手樂器（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "海洋樂器",
+  "url": "https://www.oceanpiano.com.tw",
+  "desc": "40 年鋼琴調音與各式樂器專賣（含中古琴）",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手樂器（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "宏韻音樂 hymusic",
+  "url": "https://www.hymusic.com.tw",
+  "desc": "樂器與音響販售（含二手）",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手樂器（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "大華相機",
+  "url": "https://www.gloryman.com.tw",
+  "desc": "台南二手相機專賣，鏡頭收購買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手相機（4）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "林相攝影",
+  "url": "https://www.linscam.shop",
+  "desc": "全省二手相機買賣，新手友善",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手相機（4）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "相機王",
+  "url": "https://www.bigcamera.com.tw",
+  "desc": "知名相機通路，含二手與中古機收購",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手相機（4）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "DCView 二手市場",
+  "url": "http://market.dcview.com",
+  "desc": "老牌攝影社群 DCView 的二手交易區",
+  "type": "平台",
+  "verify": "unverified",
+  "sub": "二手相機（4）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "ECO 媽咪",
+  "url": "https://ecomami.com.tw/second",
+  "desc": "婦嬰用品出租起家，另設二手專區",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手母嬰（2）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "BabyLoop",
+  "url": "https://babyloop-6b754.web.app",
+  "desc": "二手母嬰好物市集（App／Web App）",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手母嬰（2）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "迪卡儂二手市集",
+  "url": "https://www.decathlon.tw/s/second_hand_market",
+  "desc": "迪卡儂官方二手專區，收購再轉售運動用品",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手運動用品（1）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "捷安特認證車",
+  "url": "https://www.giant-bicycles.com/tw/giant-certified",
+  "desc": "Giant 官方認證中古車體系",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手單車（3）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "風逸單車",
+  "url": "https://fi-bike.com",
+  "desc": "台中二手公路車買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手單車（3）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "單車星球生活館",
+  "url": "https://www.bikeplanetexplore.com",
+  "desc": "彰化公路車與二手公路車買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手單車（3）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "名錶雷達站",
+  "url": "https://www.rdwatch.com.tw",
+  "desc": "Rolex／PP／AP 交流中心，**名稱即含「雷達」但為名錶交流站**",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手名錶（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "永生名錶",
+  "url": "https://www.egps.com.tw",
+  "desc": "中古名錶買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手名錶（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "鐘點站名錶",
+  "url": "https://www.hourstack.com.tw",
+  "desc": "中古錶／二手錶交流中心",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手名錶（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "好時計",
+  "url": "https://www.goodtimezone.com.tw",
+  "desc": "二手名錶交易",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手名錶（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "玩錶舍",
+  "url": "https://www.playwatch.com.tw",
+  "desc": "高級腕錶與克羅心金飾交流",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手名錶（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "大眾名錶",
+  "url": "https://www.dzwatch.tw",
+  "desc": "中古錶／二手錶專營",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手名錶（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "Chrono24 台灣",
+  "url": "https://www.chrono24.tw",
+  "desc": "全球最大二手名錶交易平台的台灣站",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手名錶（7）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "台灣玩具圖書館",
+  "url": "https://www.tw-toylibrary.org",
+  "desc": "二手玩具回收、整理與再流通（公益導向）",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手玩具（1）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "8591 寶物交易",
+  "url": "https://www.8591.com.tw",
+  "desc": "台灣最大遊戲帳號／虛寶交易平台",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手遊戲／點數（4）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "德周電玩",
+  "url": "http://www.texas.com.tw",
+  "desc": "連鎖電玩店，含二手遊戲片買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手遊戲／點數（4）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "GAME 休閒館",
+  "url": "https://www.game4fun.com.tw",
+  "desc": "連鎖電玩通路，二手片交換買賣",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手遊戲／點數（4）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "9199 交易久久",
+  "url": "https://m.9199.com.tw",
+  "desc": "線上遊藝與遊戲交易平台",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手遊戲／點數（4）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "AREA 02",
+  "url": "https://www.area02.com",
+  "desc": "亞洲指標潮流文化交易所，球鞋與潮流品鑑定交易",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手球鞋／潮流（2）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "KOCA",
+  "url": "https://koca.app",
+  "desc": "K-pop 小卡、ACG 收藏品交易平台（台灣團隊）",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手球鞋／潮流（2）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "跳蚤本舖",
+  "url": "https://www.bbbobo.com.tw",
+  "desc": "全台連鎖寄賣／託售／二手專門店",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手寄賣／跳蚤（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "環保跳蚤屋",
+  "url": "https://easysell.com.tw",
+  "desc": "二手寄賣專門店",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手寄賣／跳蚤（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "蚤寶王國",
+  "url": "https://www.zbaokingdom.com",
+  "desc": "二手寄賣與跳蚤市場",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手寄賣／跳蚤（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "蚤來蚤趣",
+  "url": "https://www.jljh.com.tw",
+  "desc": "二手寄賣連鎖",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手寄賣／跳蚤（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "二手寄賣市集",
+  "url": "https://wfm.yctec.com.tw",
+  "desc": "二手寄賣市集",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "二手寄賣／跳蚤（5）",
+  "cat": "vertical",
+  "catLabel": "垂直／品類二手平台"
+ },
+ {
+  "name": "BigGo 比個夠",
+  "url": "https://biggo.com.tw",
+  "desc": "整合蝦皮、momo、樂天、東森、Pinkoi 等平台的商品價格搜尋引擎，**提供近兩年歷史價格與即時降價通知**",
+  "type": "聚合",
+  "verify": "verified",
+  "sub": "⚠️ 重要負面結論",
+  "cat": "radar",
+  "catLabel": "比價／降價通知"
+ },
+ {
+  "name": "飛比價格 Feebee",
+  "url": "https://feebee.com.tw",
+  "desc": "台灣老牌跨電商比價網，**追蹤商品後可開啟降價通知**，並顯示商品歷史價格",
+  "type": "聚合",
+  "verify": "verified",
+  "sub": "⚠️ 重要負面結論",
+  "cat": "radar",
+  "catLabel": "比價／降價通知"
+ },
+ {
+  "name": "FindPrice 價格網",
+  "url": "https://www.findprice.com.tw",
+  "desc": "跨購物網站的商品價格查詢與比價",
+  "type": "聚合",
+  "verify": "verified",
+  "sub": "⚠️ 重要負面結論",
+  "cat": "radar",
+  "catLabel": "比價／降價通知"
+ },
+ {
+  "name": "比價撿便宜",
+  "url": "https://www.lbj.tw",
+  "desc": "老牌比價網站，主打「逛街購物的比價王」",
+  "type": "聚合",
+  "verify": "verified",
+  "sub": "⚠️ 重要負面結論",
+  "cat": "radar",
+  "catLabel": "比價／降價通知"
+ },
+ {
+  "name": "iGood「降價雷達」",
+  "url": "https://igood.tw/posts/69868",
+  "desc": "iGood 編輯部製作的降價通知工具／教學專題，**是「降價雷達」一詞在台灣最接近的實際產品**",
+  "type": "媒體／工具",
+  "verify": "verified",
+  "sub": "⚠️ 重要負面結論",
+  "cat": "radar",
+  "catLabel": "比價／降價通知"
+ },
+ {
+  "name": "千機對 HyperLocal",
+  "url": "https://hyper-local.monnie.com.tw",
+  "desc": "自稱「你的地端需求雷達」，以在地需求配對為核心（非二手專用）",
+  "type": "聚合",
+  "verify": "verified",
+  "sub": "⚠️ 重要負面結論",
+  "cat": "radar",
+  "catLabel": "比價／降價通知"
+ },
+ {
+  "name": "Dcard 二手交易板",
+  "url": "https://www.dcard.tw/f/second_hand",
+  "desc": "年輕族群最大的二手交易討論板",
+  "type": "社團",
+  "verify": "verified",
+  "sub": "論壇看板（10）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "PTT `give`",
+  "url": "https://www.pttweb.cc/bbs/give",
+  "desc": "無償贈送板（二手物流通）",
+  "type": "社團",
+  "verify": "verified",
+  "sub": "論壇看板（10）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "PTT `mobilesales`",
+  "url": "https://www.pttweb.cc/bbs/mobilesales",
+  "desc": "手機買賣板",
+  "type": "社團",
+  "verify": "verified",
+  "sub": "論壇看板（10）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "PTT `HardwareSale`",
+  "url": "https://www.pttweb.cc/bbs/HardwareSale",
+  "desc": "電腦硬體買賣板",
+  "type": "社團",
+  "verify": "verified",
+  "sub": "論壇看板（10）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "PTT `MacShop`",
+  "url": "https://www.pttweb.cc/bbs/MacShop",
+  "desc": "Apple 產品買賣板",
+  "type": "社團",
+  "verify": "verified",
+  "sub": "論壇看板（10）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "PTT `SportsShop`",
+  "url": "https://www.pttweb.cc/bbs/SportsShop",
+  "desc": "運動用品買賣板",
+  "type": "社團",
+  "verify": "verified",
+  "sub": "論壇看板（10）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "PTT `CarShop`",
+  "url": "https://www.pttweb.cc/bbs/CarShop",
+  "desc": "汽車買賣板",
+  "type": "社團",
+  "verify": "verified",
+  "sub": "論壇看板（10）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "PTT `bicycle`",
+  "url": "https://www.pttweb.cc/bbs/bicycle",
+  "desc": "自行車板（含二手車交易）",
+  "type": "社團",
+  "verify": "verified",
+  "sub": "論壇看板（10）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "PTT `Gamesale`",
+  "url": "https://www.pttweb.cc/bbs/Gamesale",
+  "desc": "遊戲軟硬體買賣板",
+  "type": "社團",
+  "verify": "verified",
+  "sub": "論壇看板（10）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "二手好物交易社",
+  "url": "https://openchat.line.me/tw/cover/_TuctqeKZL3a1rV-GMP1IikegHizrSNgo9ajc7voXmS13PNPZW70eHNuE8g",
+  "desc": "",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "LINE 社群（OpenChat，6）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "二手~全新～出清拍賣",
+  "url": "https://openchat.line.me/tw/cover/6QQLzUQmG-y3zB669-FSZuncUIcqf79dFIVTTzVhgoR0IzgBJL2y5l48mgA",
+  "desc": "",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "LINE 社群（OpenChat，6）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "二手交易市集",
+  "url": "https://openchat.line.me/tw/cover/yuabYxGFWBUSj4ArVpOEJGG4l5v9_bI6c36Mg0sBPLDG1S7eHw-YITwMTjk",
+  "desc": "",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "LINE 社群（OpenChat，6）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "商品買賣交流群",
+  "url": "https://openchat.line.me/tw/cover/XbTuEww58rtvt4lGiU0JvswJJT3Fmi0JcfTXHK_4Hzg69fnt5jAFexm0qYY",
+  "desc": "",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "LINE 社群（OpenChat，6）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "高雄全新♥️二手買賣【萬物皆可】限面交",
+  "url": "https://openchat.line.me/tw/cover/C-vobo9zGmAYxtmqTSBdcL2htA348lOWrBc8SG3Z5xTVxqbBLmrHMlsiSa8",
+  "desc": "",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "LINE 社群（OpenChat，6）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "極簡斷捨離☺全新二手衣.二手商品 買賣交流",
+  "url": "https://openchat.line.me/tw/cover/n10hfGzzc2o1tCxZX3o-ORM99J1gnGt0oflCXutCOfDmtlaBJ7geI9c7xOU",
+  "desc": "",
+  "type": "平台",
+  "verify": "verified",
+  "sub": "LINE 社群（OpenChat，6）",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "台灣最大全新二手買賣交流平台",
+  "url": "https://www.facebook.com/groups/1674453666199238/",
+  "desc": "綜合",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "二手交流網",
+  "url": "https://www.facebook.com/groups/198503350253636/",
+  "desc": "綜合",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "台北全新&二手拍賣網",
+  "url": "https://www.facebook.com/groups/recycletaipei/",
+  "desc": "綜合（北）",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "大台南二手拍賣市集",
+  "url": "https://www.facebook.com/groups/1598850737055524/",
+  "desc": "綜合（南）",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "高雄二手全新交易網",
+  "url": "https://www.facebook.com/groups/828131227268712/",
+  "desc": "綜合（南）",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "全台二手精品買賣交流",
+  "url": "https://www.facebook.com/groups/350247875424530/",
+  "desc": "精品",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "龍團二手名錶配件買賣交流區",
+  "url": "https://www.facebook.com/groups/634335290047605/",
+  "desc": "名錶",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "真實在二手鐘錶",
+  "url": "https://www.facebook.com/groups/213337376776947/",
+  "desc": "名錶",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "便宜家具出清交易平台",
+  "url": "https://www.facebook.com/groups/637171889816040/",
+  "desc": "家具",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "二手家具不浪費",
+  "url": "https://www.facebook.com/groups/259958247544193/",
+  "desc": "家具",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "二手生財器具買賣、餐飲設備交流買賣、頂讓、中古",
+  "url": "https://www.facebook.com/groups/1641120622830102/",
+  "desc": "餐飲設備",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "開店撿便宜-二手生財器具餐飲設備買賣",
+  "url": "https://www.facebook.com/groups/756547507730866/",
+  "desc": "餐飲設備",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "二手樂器買賣平台",
+  "url": "https://www.facebook.com/groups/1507860366133146/",
+  "desc": "樂器",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "二手樂器交換買賣市集",
+  "url": "https://www.facebook.com/groups/204143143038668/",
+  "desc": "樂器",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "二手相機鏡頭買賣交易平台",
+  "url": "https://www.facebook.com/groups/748048075838626/",
+  "desc": "相機",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "母嬰用品買賣交流｜二手出清/全新好物",
+  "url": "https://www.facebook.com/groups/mummymummy/",
+  "desc": "母嬰",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "二手婦幼母嬰用品交流平台(新)",
+  "url": "https://www.facebook.com/groups/gomabb/",
+  "desc": "母嬰",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "全新二手健身/運動器材買賣平台",
+  "url": "https://www.facebook.com/groups/2623337571040390/",
+  "desc": "運動",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "二手健身器材買賣區",
+  "url": "https://www.facebook.com/groups/2348891138552903/",
+  "desc": "運動",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "運動用品交易交流區",
+  "url": "https://www.facebook.com/groups/787336411400360/",
+  "desc": "運動",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "二手自行車交易平台",
+  "url": "https://www.facebook.com/groups/165127063674442/",
+  "desc": "單車",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "自行車交易買賣區",
+  "url": "https://www.facebook.com/groups/1641481525884877/",
+  "desc": "單車",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "台灣全新二手玩具交流買賣中心",
+  "url": "https://www.facebook.com/groups/398896983629642/",
+  "desc": "玩具",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "球鞋交易平台",
+  "url": "https://www.facebook.com/groups/405051589674556/",
+  "desc": "球鞋",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "PS5.PS4.Switch 買賣交流區",
+  "url": "https://www.facebook.com/groups/637079144893061/",
+  "desc": "遊戲",
+  "type": "平台",
+  "verify": "partial",
+  "sub": "Facebook 社團（25）— ⚠️ 全部為「半查證」",
+  "cat": "group",
+  "catLabel": "二手社團"
+ },
+ {
+  "name": "車訊網 CARNEWS",
+  "url": "https://www.carnews.com",
+  "desc": "汽車媒體，含中古車行情與選購報導",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "SOGI 手機王",
+  "url": "https://www.sogi.com.tw",
+  "desc": "手機價格情報站，含二手機行情與回收資訊",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "ePrice 比價王",
+  "url": "https://www.eprice.com.tw",
+  "desc": "手機／3C 比價與二手交易情報",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "數位時代 BusinessNext",
+  "url": "https://www.bnext.com.tw",
+  "desc": "科技財經媒體，常報導二手電商與循環經濟",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "Meet 創業小聚",
+  "url": "https://meet.bnext.com.tw",
+  "desc": "新創媒體，報導二手交易新創（如 PopChill）",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "關鍵評論網",
+  "url": "https://www.thenewslens.com",
+  "desc": "深度報導二手經濟、快時尚與永續消費",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "中央社 CNA",
+  "url": "https://www.cna.com.tw",
+  "desc": "國家通訊社，二手市場與循環經濟新聞來源",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "ETtoday 新聞雲",
+  "url": "https://www.ettoday.net",
+  "desc": "綜合新聞，含二手交易詐騙與市場報導",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "ETtoday 旅遊雲",
+  "url": "https://travel.ettoday.net/article/827795.htm",
+  "desc": "「大台北 7 大二手跳蚤市場」整理文",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "商業周刊",
+  "url": "https://www.businessweekly.com.tw",
+  "desc": "財經雜誌，二手車與二手精品產業分析",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "美麗佳人 Marie Claire",
+  "url": "https://www.marieclaire.com.tw",
+  "desc": "時尚媒體，二手精品與永續時尚專題",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "世新小世界",
+  "url": "https://shuj.shu.edu.tw",
+  "desc": "學生新聞，二手市集與校園循環報導",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "樹冠 Canopi",
+  "url": "https://canopi.tw",
+  "desc": "社會創新媒體，循環經濟與二手再利用報導",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "APPI News",
+  "url": "https://appi.news",
+  "desc": "亞太專業觀點新聞平台",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "凱絡媒體週報",
+  "url": "https://caratweekly.com",
+  "desc": "媒體代理商週報，含二手交易消費洞察",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "KIKS TW",
+  "url": "https://www.kiks.com.tw",
+  "desc": "球鞋與潮流媒體，含二手球鞋市場情報",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "mybest",
+  "url": "https://tw.my-best.com/115708",
+  "desc": "商品推薦媒體，二手平台比較與選購指南",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "新識界 Neww",
+  "url": "https://neww.tw/car-website/",
+  "desc": "「8 大二手車平台」整理文",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "夢想銀號 DreamLoan",
+  "url": "https://dreamloan.com.tw/knowledge/article/383",
+  "desc": "借貸知識平台，含二手車貸款與估價說明",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "居家整聊室",
+  "url": "https://www.tidyman.com.tw/selling-used-things/",
+  "desc": "整理收納服務，教你把二手物品賣掉",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "拾光整理",
+  "url": "https://www.gleantime.com.tw/blog/selluseditems",
+  "desc": "整理師品牌，二手出清教學文",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "GLISERLAND",
+  "url": "https://www.gliserland.com",
+  "desc": "中文時尚雜誌，二手精品選購內容",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "Mia TV",
+  "url": "https://miatv.tw/secondhand/",
+  "desc": "部落客的二手交易主題文章",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "二拾衫部落格",
+  "url": "https://www.twentythree.com.tw/blog/posts/2404-online-stores",
+  "desc": "二手電商自家部落格，整理線上二手平台比較",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ },
+ {
+  "name": "DR.DEAN",
+  "url": "https://deanlife.blog/ec-comparison/",
+  "desc": "四大電商平台手續費比較（2026-10-12 更新），二手賣家選平台必讀",
+  "type": "媒體",
+  "verify": "verified",
+  "sub": "",
+  "cat": "media",
+  "catLabel": "二手媒體／資訊"
+ }
+]
