@@ -16,6 +16,16 @@
 2. commit 到 `main`
 3. Render 會自動重新部署，數分鐘內生效於 0915888927.com
 
+
+## 0915888927.com/tw — 二手雷達（宜蘭倉庫營運系統）
+
+- 路徑：本 repo 的 `tw/` 資料夾（純靜態，無建置）
+- 網址：https://0915888927.com/tw/
+- 原始碼（開發版）：`~/Desktop/tw-secondhand-portal/`，另有 Vercel 備援 https://tw-secondhand-portal.vercel.app
+- 更新方式：把 `tw-secondhand-portal/public/` 的內容覆蓋到本 repo 的 `tw/`，commit 到 `main`，Render 自動部署
+- 資料：庫存／社團／網站目錄／回覆範本在 `tw/data/*.json`；使用者改的價格、套餐、名單存在瀏覽器 localStorage
+- 注意：`tw/` 內所有路徑都是相對路徑，必須用 `/tw/`（有結尾斜線）開啟，否則 assets 會 404
+
 ## 其他
 
 - 本 repo 同時包含「林博AI 台股座談會」Next.js 平台原始碼（`src/`），與指揮中心的 `index.html` 共用同一個 repo
