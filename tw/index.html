@@ -46,11 +46,44 @@
         <option value="sold">⚪ 已售出</option>
       </select>
       <button id="stockPost" class="btn primary">📤 發文</button>
+      <button id="priceMode" class="btn">⚡ 快速標價</button>
       <button id="exportCsv" class="btn ghost">⬇ 匯出 CSV</button>
     </div>
     <div class="chips" id="stockCats"></div>
     <div class="grid" id="stockGrid"></div>
     <p class="empty" id="stockEmpty" hidden>沒有符合的商品</p>
+
+    <div id="pricePanel" hidden>
+      <div class="price-bar">
+        <div class="price-progress">
+          <strong id="priceDone">0 / 0</strong>
+          <span>已標價</span>
+          <div class="price-track"><i id="priceFill"></i></div>
+        </div>
+        <div class="price-total">總值 <strong id="priceSum">—</strong></div>
+        <button id="priceFillRef" class="btn small ghost">套用全部參考價</button>
+        <button id="priceClear" class="btn small ghost">清除全部</button>
+        <button id="priceBack" class="btn small">← 回到卡片</button>
+      </div>
+      <p class="price-note" id="priceNote"></p>
+      <div class="ptable-wrap">
+        <table class="ptable">
+          <thead>
+            <tr>
+              <th></th>
+              <th>品名</th>
+              <th>分類</th>
+              <th>售價</th>
+              <th>數量</th>
+              <th>規格</th>
+              <th>參考行情</th>
+              <th>狀態</th>
+            </tr>
+          </thead>
+          <tbody id="priceBody"></tbody>
+        </table>
+      </div>
+    </div>
   </section>
 
   <section id="view-packages" class="view">
@@ -375,7 +408,7 @@
 <footer class="wrap">
   <p>庫存來源：Google Drive <code>11月底宜蘭倉庫庫存</code> · 更新 <span id="updated">—</span></p>
   <p class="tiny">套餐／名單／線索存在你這台裝置的瀏覽器，換裝置請用「匯出 CSV」備份。</p>
-  <p class="tiny">v3.3.0 · 0915888927.com/tw</p>
+  <p class="tiny">v3.4.0 · 0915888927.com/tw</p>
 </footer>
 
 <script src="app.js"></script>

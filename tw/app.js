@@ -31,6 +31,9 @@ const state = {
   replyCat: '',
   sop: null,
   sopQ: '',
+  priceMode: false,
+  priceRef: {},
+  priceRefNote: '',
   buyerQ: '',
   buyerSort: false,
   sellerQ: '',
@@ -132,6 +135,10 @@ function renderStockCats() {
 }
 
 function renderStock() {
+  if (state.priceMode) {
+    renderPriceTable();
+    return;
+  }
   const q = state.stockQ.trim().toLowerCase();
   const list = state.items
     .map(merged)
@@ -161,6 +168,135 @@ function renderStock() {
     .join('');
 
   $$('#stockGrid .card').forEach((c) => c.addEventListener('click', () => openModal(c.dataset.id)));
+}
+
+/* ================= 快速標價 ================= */
+function setOverride(id, field, value) {
+  const cur = { ...(state.overrides[id] || {}) };
+  if (value === '' || value === null || value === undefined) delete cur[field];
+  else cur[field] = value;
+  if (Object.keys(cur).length) state.overrides[id] = cur;
+  else delete state.overrides[id];
+  writeLS(K.inv, state.overrides);
+}
+
+function priceRefFor(id) {
+  const r = state.priceRef[id];
+  return Array.isArray(r) && r.length === 2 ? r : null;
+}
+
+function renderPriceTable() {
+  const q = state.stockQ.trim().toLowerCase();
+  const list = state.items
+    .map(merged)
+    .filter((i) => !state.stockCat || i.cat === state.stockCat)
+    .filter((i) => !state.stockStatus || i.status === state.stockStatus)
+    .filter((i) => !q || `${i.name} ${i.cat} ${i.desc} ${i.specs}`.toLowerCase().includes(q));
+
+  $('#priceBody').innerHTML = list
+    .map((i) => {
+      const ref = priceRefFor(i.id);
+      const refTxt = ref ? `${money(ref[0])}–${money(ref[1])}` : '—';
+      return `<tr data-id="${esc(i.id)}">
+        <td class="pt-img"><img src="${esc(i.photos[0] || '')}" alt="" loading="lazy"></td>
+        <td class="pt-name">${esc(i.name)}</td>
+        <td class="pt-cat">${esc(i.cat)}</td>
+        <td><input class="pt-in pt-price" type="number" min="0" step="100" inputmode="numeric"
+             value="${i.price ?? ''}" placeholder="未定價"></td>
+        <td><input class="pt-in pt-qty" type="number" min="0" step="1" inputmode="numeric"
+             value="${i.qty ?? ''}" placeholder="—"></td>
+        <td><input class="pt-in pt-specs" type="text" value="${esc(i.specs || '')}" placeholder="尺寸／廠牌"></td>
+        <td>${ref ? `<button class="pt-ref" data-id="${esc(i.id)}" title="點一下填入中間值">${refTxt}</button>` : '<span class="pt-ref-none">—</span>'}</td>
+        <td>
+          <select class="pt-in pt-status">
+            <option value="available"${i.status === 'available' ? ' selected' : ''}>🟢 待售</option>
+            <option value="reserved"${i.status === 'reserved' ? ' selected' : ''}>🟡 已保留</option>
+            <option value="sold"${i.status === 'sold' ? ' selected' : ''}>⚪ 已售出</option>
+          </select>
+        </td>
+      </tr>`;
+    })
+    .join('');
+
+  $$('#priceBody tr').forEach((tr) => {
+    const id = tr.dataset.id;
+    const price = tr.querySelector('.pt-price');
+    const qty = tr.querySelector('.pt-qty');
+    const specs = tr.querySelector('.pt-specs');
+    const status = tr.querySelector('.pt-status');
+
+    price.addEventListener('input', () => {
+      setOverride(id, 'price', price.value === '' ? '' : Number(price.value));
+      updatePriceStats();
+    });
+    qty.addEventListener('input', () => {
+      setOverride(id, 'qty', qty.value === '' ? '' : Number(qty.value));
+      updatePriceStats();
+    });
+    specs.addEventListener('input', () => setOverride(id, 'specs', specs.value));
+    status.addEventListener('change', () => {
+      setOverride(id, 'status', status.value);
+      updatePriceStats();
+    });
+  });
+
+  $$('#priceBody .pt-ref').forEach((b) =>
+    b.addEventListener('click', () => {
+      const ref = priceRefFor(b.dataset.id);
+      if (!ref) return;
+      const mid = Math.round((ref[0] + ref[1]) / 2 / 100) * 100;
+      const tr = b.closest('tr');
+      tr.querySelector('.pt-price').value = mid;
+      setOverride(b.dataset.id, 'price', mid);
+      updatePriceStats();
+      toast(b, `已填入 ${money(mid)}`);
+    })
+  );
+
+  updatePriceStats();
+}
+
+function updatePriceStats() {
+  const all = state.items.map(merged);
+  const priced = all.filter((i) => i.price != null && i.price !== '');
+  const sum = priced.reduce((a, i) => a + Number(i.price) * (Number(i.qty) || 1), 0);
+  $('#priceDone').textContent = `${priced.length} / ${all.length}`;
+  $('#priceFill').style.width = all.length ? `${(priced.length / all.length) * 100}%` : '0%';
+  $('#priceSum').textContent = priced.length ? money(sum) : '—';
+  $('#priceNote').textContent = state.priceRefNote || '';
+}
+
+function togglePriceMode(on) {
+  state.priceMode = on ?? !state.priceMode;
+  $('#pricePanel').hidden = !state.priceMode;
+  $('#stockGrid').hidden = state.priceMode;
+  $('#stockEmpty').hidden = true;
+  $('#priceMode').classList.toggle('primary', state.priceMode);
+  $('#priceMode').textContent = state.priceMode ? '⚡ 標價中' : '⚡ 快速標價';
+  if (state.priceMode) renderPriceTable();
+  else renderStock();
+}
+
+function fillAllRefs() {
+  let n = 0;
+  state.items.forEach((i) => {
+    const ref = priceRefFor(i.id);
+    if (!ref) return;
+    const cur = merged(i);
+    if (cur.price != null && cur.price !== '') return;
+    const mid = Math.round((ref[0] + ref[1]) / 2 / 100) * 100;
+    setOverride(i.id, 'price', mid);
+    n++;
+  });
+  renderPriceTable();
+  toast($('#priceFillRef'), n ? `已填入 ${n} 項參考價，記得逐項調整` : '每一項都已經有價格了');
+}
+
+function clearAllPrices() {
+  if (!confirm('確定要清除全部售價嗎？（只清售價，其他資料不動）')) return;
+  state.items.forEach((i) => setOverride(i.id, 'price', ''));
+  renderPriceTable();
+  toast($('#priceClear'), '已清除全部售價');
 }
 
 /* ================= 商品 modal ================= */
@@ -1657,12 +1793,13 @@ async function init() {
   state.sellers = readLS(K.seller, []);
   state.posts = readLS(K.post, []);
 
-  const [inv, groups, sites, replies, sop] = await Promise.all([
+  const [inv, groups, sites, replies, sop, priceRef] = await Promise.all([
     fetch('data/inventory.json').then((r) => r.json()).catch(() => ({ items: [] })),
     fetch('data/groups.json').then((r) => r.json()).catch(() => ({ groups: [] })),
     fetch('data/sites.json').then((r) => r.json()).catch(() => []),
     fetch('data/replies.json').then((r) => r.json()).catch(() => ({ replies: [] })),
     fetch('data/sop.json').then((r) => r.json()).catch(() => null),
+    fetch('data/price-ref.json').then((r) => r.json()).catch(() => null),
   ]);
 
   state.items = inv.items || [];
@@ -1670,6 +1807,8 @@ async function init() {
   state.sites = Array.isArray(sites) ? sites : [];
   state.replies = replies.replies || [];
   state.sop = sop;
+  state.priceRef = priceRef?.refs || {};
+  state.priceRefNote = priceRef?.note || '';
   $('#updated').textContent = inv.updated || '—';
 
   renderStats();
@@ -1702,6 +1841,11 @@ async function init() {
     );
     csvDownload(rows, `宜蘭倉庫庫存_${new Date().toISOString().slice(0, 10)}.csv`);
   });
+
+  $('#priceMode').addEventListener('click', () => togglePriceMode());
+  $('#priceBack').addEventListener('click', () => togglePriceMode(false));
+  $('#priceFillRef').addEventListener('click', fillAllRefs);
+  $('#priceClear').addEventListener('click', clearAllPrices);
 
   $$('.tab').forEach((t) => t.addEventListener('click', () => switchView(t.dataset.view)));
 

@@ -1,0 +1,21 @@
+{
+  "note": "台灣二手餐飲設備參考行情（2026 年）。實際價格請依年份、廠牌、尺寸、外觀狀況調整。點表格裡的區間可以直接填入中間值。",
+  "refs": {
+    "worktable": [2000, 4500],
+    "worktable-fridge": [8000, 15000],
+    "push-cart": [800, 2000],
+    "gas-stove": [3000, 8000],
+    "warming-table": [4000, 9000],
+    "warming-box": [1500, 3500],
+    "glass-fridge": [12000, 25000],
+    "sink-worktable": [3000, 6000],
+    "furniture": [1000, 5000],
+    "appliance": [1000, 6000],
+    "chairs": [150, 400],
+    "rice-cooker": [1500, 4000],
+    "display-rack": [1500, 4000],
+    "steamer": [2000, 6000],
+    "counter": [3000, 8000],
+    "mixer": [3000, 12000]
+  }
+}
