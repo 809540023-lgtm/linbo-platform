@@ -44,6 +44,7 @@
         <option value="reserved">🟡 已保留</option>
         <option value="sold">⚪ 已售出</option>
       </select>
+      <button id="stockPost" class="btn primary">📤 發文</button>
       <button id="exportCsv" class="btn ghost">⬇ 匯出 CSV</button>
     </div>
     <div class="chips" id="stockCats"></div>
@@ -296,10 +297,63 @@
   </div>
 </div>
 
+<div class="modal" id="postModal" hidden>
+  <div class="modal-card wide">
+    <button class="modal-close" id="postClose" aria-label="關閉">✕</button>
+    <div class="modal-body">
+      <h2 class="modal-h2">📤 發文到社團</h2>
+      <p class="hint" style="margin-top:-6px">選商品 → 文案自動長出來 → 下載拼圖 → 貼進社團。FB 社團沒有開放程式發文，最後一步要你自己貼（10 秒）。</p>
+
+      <div class="post-target">
+        <label>目標社團
+          <select id="postGroup"></select>
+        </label>
+        <a id="postOpenGroup" class="btn small" href="#" target="_blank" rel="noopener">開啟社團 ↗</a>
+      </div>
+
+      <div class="picker-head">
+        <span>① 選商品（可多選，拼圖最多 9 項）</span>
+        <span class="picker-sum" id="postSum">已選 0 項</span>
+      </div>
+      <div class="post-picker" id="postPicker"></div>
+
+      <div class="post-styles" id="postStyles"></div>
+
+      <div class="postbox">
+        <div class="postbox-head">
+          <span>② 貼文文案（可直接改）</span>
+          <div>
+            <button id="postCopy" class="btn small">📋 複製</button>
+            <button id="postRegen" class="btn small ghost">🔄 重產</button>
+          </div>
+        </div>
+        <textarea id="postText" spellcheck="false" rows="14"></textarea>
+      </div>
+
+      <div class="post-img">
+        <div class="postbox-head">
+          <span>③ 拼圖（一張圖貼全部，1080×1350）</span>
+          <div>
+            <button id="postDraw" class="btn small">🖼 產生</button>
+            <button id="postDownload" class="btn small ghost">⬇ 下載</button>
+          </div>
+        </div>
+        <div class="post-canvas-wrap"><canvas id="postCanvas" width="1080" height="1350"></canvas></div>
+      </div>
+
+      <div class="modal-actions">
+        <button id="postDone" class="btn primary">✓ 已發文，記錄下來</button>
+        <button id="postNext" class="btn ghost">→ 下一個社團</button>
+      </div>
+      <p class="hint" id="postHint"></p>
+    </div>
+  </div>
+</div>
+
 <footer class="wrap">
   <p>庫存來源：Google Drive <code>11月底宜蘭倉庫庫存</code> · 更新 <span id="updated">—</span></p>
   <p class="tiny">套餐／名單／線索存在你這台裝置的瀏覽器，換裝置請用「匯出 CSV」備份。</p>
-  <p class="tiny">v3.1.0 · 0915888927.com/tw</p>
+  <p class="tiny">v3.2.0 · 0915888927.com/tw</p>
 </footer>
 
 <script src="app.js"></script>

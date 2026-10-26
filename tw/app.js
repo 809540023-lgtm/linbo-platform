@@ -6,6 +6,7 @@ const K = {
   pkg: 'twsh.packages.v1',
   buyer: 'twsh.buyers.v1',
   seller: 'twsh.sellers.v1',
+  post: 'twsh.posts.v1',
 };
 
 const STATUS_LABEL = { available: '🟢 待售', reserved: '🟡 已保留', sold: '⚪ 已售出' };
@@ -37,6 +38,11 @@ const state = {
   editingBuyer: null,
   editingSeller: null,
   dmBuyer: null,
+  posts: [],
+  postGroupId: '',
+  postPicked: [],
+  postStyle: 'pkg',
+  postVariant: 0,
 };
 
 /* ================= storage ================= */
@@ -902,17 +908,26 @@ function renderGroups() {
     });
 
   $('#groupList').innerHTML = list
-    .map(
-      (g) => `<div class="group">
+    .map((g) => {
+      const lp = lastPostFor(g);
+      const posted = lp ? `<span class="badge posted">上次 ${daysAgo(lp.at)}</span>` : '';
+      return `<div class="group">
         <div class="group-info">
-          <p class="group-name">${g.priority ? `<span class="pri">${g.priority}</span>` : ''}${esc(g.name)}</p>
+          <p class="group-name">${g.priority ? `<span class="pri">${g.priority}</span>` : ''}${esc(g.name)} ${posted}</p>
           <p class="group-sub">${esc(g.cat)}${g.kind === 'search' ? ' · 搜尋連結' : ''}</p>
           ${g.note ? `<p class="group-note">${esc(g.note)}</p>` : ''}
         </div>
-        <a class="btn small" href="${esc(g.url)}" target="_blank" rel="noopener">開啟 ↗</a>
-      </div>`
-    )
+        <div class="group-actions">
+          <button class="btn small primary" data-post="${esc(groupKey(g))}">📤 發文</button>
+          <a class="btn small ghost" href="${esc(g.url)}" target="_blank" rel="noopener">開啟 ↗</a>
+        </div>
+      </div>`;
+    })
     .join('');
+
+  $$('#groupList [data-post]').forEach((b) =>
+    b.addEventListener('click', () => openPost(b.dataset.post))
+  );
 }
 
 function renderGroupProductSelect() {
@@ -928,6 +943,527 @@ function renderGroupProductSelect() {
     '<option value="">① 選擇商品或套餐…</option>' +
     (pkgs ? `<optgroup label="開店套餐">${pkgs}</optgroup>` : '') +
     (items ? `<optgroup label="單品">${items}</optgroup>` : '');
+}
+
+/* ================= 發文產生器 ================= */
+const POST_STYLES = [
+  { id: 'pkg', label: '🎁 開店套餐' },
+  { id: 'item', label: '📦 單品出清' },
+  { id: 'urgent', label: '⚡ 限時出清' },
+  { id: 'buy', label: '🏪 收店公告' },
+];
+
+const postItems = () =>
+  state.postPicked
+    .map((id) => itemById(id))
+    .filter(Boolean)
+    .map(merged)
+    .filter((i) => i.status !== 'sold');
+const groupKey = (g) => g.url || g.name;
+const groupById = (k) => state.groups.find((g) => groupKey(g) === k) || null;
+
+function lastPostFor(g) {
+  const k = groupKey(g);
+  return state.posts.filter((p) => p.groupKey === k).sort((a, b) => (a.at < b.at ? 1 : -1))[0] || null;
+}
+
+function daysAgo(iso) {
+  const d = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+  if (d <= 0) return '今天';
+  if (d === 1) return '昨天';
+  return `${d} 天前`;
+}
+
+function openPost(groupKeyArg, itemIds) {
+  const sorted = [...state.groups].sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99));
+  state.postGroupId = groupKeyArg || state.postGroupId || (sorted[0] ? groupKey(sorted[0]) : '');
+  if (itemIds) state.postPicked = [...itemIds];
+  renderPostGroups();
+  renderPostPicker();
+  renderPostStyles();
+  regenPost();
+  $('#postModal').hidden = false;
+  document.body.style.overflow = 'hidden';
+  $('#postModal').scrollTop = 0;
+}
+
+function closePost() {
+  $('#postModal').hidden = true;
+  document.body.style.overflow = '';
+}
+
+function renderPostGroups() {
+  const sorted = [...state.groups].sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99));
+  $('#postGroup').innerHTML = sorted
+    .map((g) => {
+      const lp = lastPostFor(g);
+      const tag = lp ? ` · 上次 ${daysAgo(lp.at)}` : '';
+      return `<option value="${esc(groupKey(g))}">${g.priority ? `${g.priority}. ` : ''}${esc(g.name)}${tag}</option>`;
+    })
+    .join('');
+  $('#postGroup').value = state.postGroupId;
+  syncPostGroupLink();
+}
+
+function syncPostGroupLink() {
+  const g = groupById(state.postGroupId);
+  const a = $('#postOpenGroup');
+  if (g) {
+    a.href = g.url;
+    a.hidden = false;
+    a.textContent = g.kind === 'search' ? '🔍 去 FB 搜尋 ↗' : '開啟社團 ↗';
+  } else {
+    a.hidden = true;
+  }
+}
+
+function renderPostPicker() {
+  const items = state.items.map(merged).filter((i) => i.status !== 'sold');
+  if (!items.length) {
+    $('#postPicker').innerHTML = '<p class="hint" style="padding:12px">沒有可發文的商品</p>';
+    return;
+  }
+  $('#postPicker').innerHTML = items
+    .map((i) => {
+      const on = state.postPicked.includes(i.id);
+      const img = i.photos?.[0] ? `<img src="${esc(i.photos[0])}" alt="" loading="lazy">` : '<div class="pp-noimg">📦</div>';
+      return `<div class="post-pick ${on ? 'on' : ''}" data-id="${esc(i.id)}">
+        ${img}
+        <span class="pp-tick">✓</span>
+        <div class="pp-body">
+          <div class="pp-name">${esc(i.name)}</div>
+          <div class="pp-price ${i.price ? '' : 'none'}">${i.price ? money(i.price) : '未定價'}</div>
+        </div>
+      </div>`;
+    })
+    .join('');
+  updatePostSum();
+}
+
+function updatePostSum() {
+  const picked = postItems();
+  const priced = picked.filter((i) => i.price);
+  const total = priced.reduce((s, i) => s + Number(i.price), 0);
+  const unpriced = picked.length - priced.length;
+  let txt = `已選 ${picked.length} 項`;
+  if (total) txt += ` · 合計 ${money(total)}`;
+  if (unpriced) txt += ` · ${unpriced} 項未定價`;
+  $('#postSum').textContent = txt;
+}
+
+function renderPostStyles() {
+  $('#postStyles').innerHTML = POST_STYLES.map(
+    (s) => `<button class="chip ${state.postStyle === s.id ? 'active' : ''}" data-style="${s.id}">${s.label}</button>`
+  ).join('');
+}
+
+const POST_OPENERS = {
+  pkg: [
+    '要開店，別一項一項買。\n這組直接幫你配好，省錢也省時間。',
+    '開一間店最貴的不是設備，是「買錯」。\n這組是照店型配好的，直接帶走。',
+    '自己一項一項找，光運費跟時間就吃掉價差。\n整組帶走比較快。',
+    '設備東湊西湊，最後不是尺寸不合就是少一件。\n這組已經配好了。',
+  ],
+  item: [
+    '倉庫出清，都是自己店裡用過、整理過的。',
+    '這些都是我們倉庫現貨，可現場看、可試機。',
+    '整理倉庫，以下都可以談，帶走越多越便宜。',
+  ],
+  urgent: [
+    '這批這週要清掉，價格好談。',
+    '倉庫要挪空間，這幾項這週帶走再優惠。',
+    '限時，這週內成交的價格跟下週不一樣。',
+  ],
+  buy: [
+    '店要收起來，設備不知道怎麼處理？\n我們整間收，你不用一件一件賣。',
+    '收店最麻煩的不是賣不掉，是「不知道誰會買」。\n我們整間收，一次解決。',
+    '結束營業，設備留著也是租金。\n我們整間收，當場現金。',
+  ],
+};
+
+const POST_CLOSERS = {
+  pkg: [
+    '告訴我你的店型跟預算，我幫你配一組 🙏',
+    '私訊我你的店型，我直接幫你配 🙏',
+    '有要開店的話，先聊聊再決定也不遲 🙏',
+  ],
+  item: [
+    '有興趣請私訊，告訴我你要哪一項 🙏',
+    '要哪一項直接私訊我，可以約時間看貨 🙏',
+    '私訊我品項名稱就好，我回你細節 🙏',
+    '有需要都可以問，問了不一定買也沒關係 🙏',
+  ],
+  urgent: [
+    '要的私訊我，先問先贏 🙏',
+    '這週要的優先，私訊我保留 🙏',
+    '有需要這週內私訊，過了就恢復原價 🙏',
+    '這週內私訊的都優先處理 🙏',
+  ],
+  buy: [
+    '有店要收，直接私訊我照片跟地點 🙏',
+    '要收店的私訊我，拍照就好，不用整理 🙏',
+    '有店要收起來，先問我一句，說不定比你想的多 🙏',
+    '要收店的話，先傳照片給我，報價不用錢 🙏',
+  ],
+};
+
+const pickVariant = (arr, v) => arr[((v % arr.length) + arr.length) % arr.length];
+
+function buildPostText() {
+  const picked = postItems();
+  const style = state.postStyle;
+  const L = [];
+  const priced = picked.filter((i) => i.price);
+  const total = priced.reduce((s, i) => s + Number(i.price), 0);
+  const unpriced = picked.length - priced.length;
+
+  if (style === 'buy') {
+    L.push('【整間收購 · 餐廳 / 小吃店 / 飲料店 / 早餐店】', '');
+    L.push(pickVariant(POST_OPENERS.buy, state.postVariant), '');
+    L.push('▪ 收購範圍：冰箱、爐具、工作台、水槽、桌椅、餐具、裝潢五金');
+    L.push('▪ 地區：宜蘭、台北、新北、桃園（其他地區可談）');
+    L.push('▪ 流程：拍照給我 → 我報價 → 約時間看貨 → 當場現金');
+    L.push('▪ 你不用搬、不用整理、不用自己上架', '');
+    L.push('⚠️ 我們是自營倉庫，不是仲介。價格實在，但一定低於市價——');
+    L.push('因為我們要整理、要保固、要承擔賣不掉的風險。', '');
+    L.push(pickVariant(POST_CLOSERS.buy, state.postVariant));
+    return L.join('\n');
+  }
+
+  if (style === 'pkg') {
+    L.push('【宜蘭倉庫 · 開店整組帶走】', '');
+    L.push(pickVariant(POST_OPENERS.pkg, state.postVariant), '');
+    if (picked.length) {
+      L.push(`▪ 內容（${picked.length} 項）：`);
+      picked.forEach((i, n) => L.push(`   ${n + 1}. ${i.name}${i.price ? ` — ${money(i.price)}` : ' — 私訊報價'}`));
+      L.push('');
+    }
+    if (total) L.push(`▪ 原價合計：${money(total)}`);
+    if (unpriced) L.push(`▪ 另有 ${unpriced} 項未定價，私訊報價`);
+    L.push('▪ 整組價：私訊談（帶走越多越便宜）');
+    L.push('▪ 地點：宜蘭倉庫（可自取，可協助運送）');
+    L.push('▪ 可現場看貨、可試機', '');
+    L.push(pickVariant(POST_CLOSERS.pkg, state.postVariant));
+    return L.join('\n');
+  }
+
+  if (style === 'urgent') {
+    L.push('【限時出清 · 這週帶走再談】', '');
+    L.push(pickVariant(POST_OPENERS.urgent, state.postVariant), '');
+    if (picked.length) {
+      picked.forEach((i) => {
+        L.push(`▪ ${i.name}${i.price ? ` — ${money(i.price)}` : ' — 私訊報價'}`);
+        if (i.specs) L.push(`   （${i.specs}）`);
+      });
+      L.push('');
+    }
+    if (total) L.push(`▪ 原價合計：${money(total)}`);
+    L.push('▪ 全部可議，帶走越多越便宜');
+    L.push('▪ 這週內成交另有優惠');
+    L.push('▪ 地點：宜蘭倉庫（可自取，可協助運送）', '');
+    L.push(pickVariant(POST_CLOSERS.urgent, state.postVariant));
+    return L.join('\n');
+  }
+
+  // item
+  L.push('【二手餐飲設備出清 · 宜蘭倉庫】', '');
+  L.push(pickVariant(POST_OPENERS.item, state.postVariant), '');
+  if (picked.length) {
+    picked.forEach((i) => {
+      L.push(`▪ ${i.name}`);
+      const bits = [];
+      if (i.condition) bits.push(i.condition);
+      if (i.specs) bits.push(i.specs);
+      if (bits.length) L.push(`   狀況／規格：${bits.join('，')}`);
+      L.push(`   售價：${i.price ? `${money(i.price)}（可議）` : '私訊報價'}`);
+      L.push('');
+    });
+  }
+  if (total) L.push(`▪ 全部帶走：${money(total)}（可再談）`);
+  L.push('▪ 地點：宜蘭倉庫（可自取，可協助運送）');
+  L.push('▪ 可現場看貨、可試機', '');
+  L.push(pickVariant(POST_CLOSERS.item, state.postVariant));
+  return L.join('\n');
+}
+
+function regenPost() {
+  $('#postText').value = buildPostText();
+  updatePostSum();
+}
+
+/* ---------- 拼圖 ---------- */
+function loadImg(src) {
+  return new Promise((res) => {
+    if (!src) return res(null);
+    const im = new Image();
+    im.onload = () => res(im);
+    im.onerror = () => res(null);
+    im.src = src;
+  });
+}
+
+function gridFor(n) {
+  if (n <= 1) return [1, 1];
+  if (n === 2) return [2, 1];
+  if (n <= 4) return [2, 2];
+  if (n <= 6) return [3, 2];
+  return [3, 3];
+}
+
+function roundRectPath(x, px, py, w, h, r) {
+  x.beginPath();
+  x.moveTo(px + r, py);
+  x.arcTo(px + w, py, px + w, py + h, r);
+  x.arcTo(px + w, py + h, px, py + h, r);
+  x.arcTo(px, py + h, px, py, r);
+  x.arcTo(px, py, px + w, py, r);
+  x.closePath();
+}
+
+function drawCover(x, img, px, py, w, h) {
+  const ir = img.width / img.height;
+  const br = w / h;
+  let sw, sh, sx, sy;
+  if (ir > br) {
+    sh = img.height;
+    sw = sh * br;
+    sx = (img.width - sw) / 2;
+    sy = 0;
+  } else {
+    sw = img.width;
+    sh = sw / br;
+    sx = 0;
+    sy = (img.height - sh) / 2;
+  }
+  x.drawImage(img, sx, sy, sw, sh, px, py, w, h);
+}
+
+async function drawCollage() {
+  const W = 1080;
+  const H = 1350;
+  const PAD = 56;
+  const picked = postItems().slice(0, 9);
+  const c = document.createElement('canvas');
+  c.width = W;
+  c.height = H;
+  const x = c.getContext('2d');
+
+  const g = x.createLinearGradient(0, 0, W, H);
+  g.addColorStop(0, '#0d1117');
+  g.addColorStop(1, '#0b1a1a');
+  x.fillStyle = g;
+  x.fillRect(0, 0, W, H);
+
+  // 標頭
+  x.fillStyle = '#2dd4bf';
+  x.font = '700 26px "PingFang TC","Noto Sans TC",sans-serif';
+  x.fillText('宜蘭倉庫 · 二手餐飲設備', PAD, 78);
+
+  const titles = {
+    pkg: '開店整組帶走',
+    item: '二手設備出清',
+    urgent: '限時出清 · 價格可談',
+    buy: '整間收購',
+  };
+  x.fillStyle = '#e6edf3';
+  x.font = '800 62px "PingFang TC","Noto Sans TC",sans-serif';
+  x.fillText(titles[state.postStyle] || '二手設備出清', PAD, 152);
+
+  const priced = picked.filter((i) => i.price);
+  const total = priced.reduce((s, i) => s + Number(i.price), 0);
+  const sub = picked.length
+    ? `${picked.length} 項${total ? ` · 原價合計 NT$${total.toLocaleString('en-US')}` : ''}`
+    : '私訊洽詢';
+  x.fillStyle = '#8b949e';
+  x.font = '400 26px "PingFang TC","Noto Sans TC",sans-serif';
+  x.fillText(sub, PAD, 196);
+
+  // 格線
+  const TOP = 232;
+  const BOT = 1180;
+  const availW = W - PAD * 2;
+  const availH = BOT - TOP;
+  const GAP = 14;
+
+  if (!picked.length && state.postStyle === 'buy') {
+    const steps = [
+      ['①', '拍照給我', '設備、店面、大概數量，手機拍就好'],
+      ['②', '我報價', '當天回你一個整間的價格'],
+      ['③', '約時間看貨', '確認後約時間，我們自己搬'],
+      ['④', '當場現金', '不用你整理、不用你上架'],
+    ];
+    const boxH = 150;
+    const startY = TOP + (availH - steps.length * (boxH + 18)) / 2;
+    steps.forEach(([no, t1, t2], n) => {
+      const py = startY + n * (boxH + 18);
+      x.save();
+      roundRectPath(x, PAD, py, availW, boxH, 16);
+      x.fillStyle = '#161b22';
+      x.fill();
+      x.strokeStyle = '#2d333b';
+      x.lineWidth = 2;
+      x.stroke();
+      x.fillStyle = '#2dd4bf';
+      x.font = '800 44px "PingFang TC","Noto Sans TC",sans-serif';
+      x.fillText(no, PAD + 28, py + 62);
+      x.fillStyle = '#e6edf3';
+      x.font = '700 34px "PingFang TC","Noto Sans TC",sans-serif';
+      x.fillText(t1, PAD + 100, py + 58);
+      x.fillStyle = '#8b949e';
+      x.font = '400 24px "PingFang TC","Noto Sans TC",sans-serif';
+      x.fillText(t2, PAD + 100, py + 100);
+      x.restore();
+    });
+  } else if (!picked.length) {
+    x.fillStyle = '#4a525c';
+    x.font = '400 34px "PingFang TC","Noto Sans TC",sans-serif';
+    x.textAlign = 'center';
+    x.fillText('請先選商品', W / 2, TOP + availH / 2);
+    x.textAlign = 'left';
+  } else {
+    const [cols, rows] = gridFor(picked.length);
+    const cellW = (availW - GAP * (cols - 1)) / cols;
+    const cellH = Math.min((availH - GAP * (rows - 1)) / rows, cellW * 1.25);
+    const gridH = cellH * rows + GAP * (rows - 1);
+    const offY = TOP + (availH - gridH) / 2;
+
+    const imgs = await Promise.all(picked.map((i) => loadImg(i.photos?.[0])));
+
+    picked.forEach((it, n) => {
+      const r = Math.floor(n / cols);
+      const col = n % cols;
+      const px = PAD + col * (cellW + GAP);
+      const py = offY + r * (cellH + GAP);
+
+      x.save();
+      roundRectPath(x, px, py, cellW, cellH, 16);
+      x.clip();
+      x.fillStyle = '#1c2128';
+      x.fillRect(px, py, cellW, cellH);
+      if (imgs[n]) drawCover(x, imgs[n], px, py, cellW, cellH);
+      else {
+        x.fillStyle = '#4a525c';
+        x.font = '400 40px sans-serif';
+        x.textAlign = 'center';
+        x.fillText('📦', px + cellW / 2, py + cellH / 2);
+        x.textAlign = 'left';
+      }
+      // 底部漸層 + 文字
+      const barH = Math.min(112, cellH * 0.42);
+      const lg = x.createLinearGradient(0, py + cellH - barH, 0, py + cellH);
+      lg.addColorStop(0, '#00000000');
+      lg.addColorStop(1, '#000000e6');
+      x.fillStyle = lg;
+      x.fillRect(px, py + cellH - barH, cellW, barH);
+
+      const fs = cellW < 340 ? 20 : 24;
+      x.font = `700 ${fs}px "PingFang TC","Noto Sans TC",sans-serif`;
+      x.fillStyle = '#ffffff';
+      const lines = wrapText(x, it.name, cellW - 24).slice(0, 2);
+      lines.forEach((ln, k) => x.fillText(ln, px + 12, py + cellH - barH + 30 + k * (fs + 4)));
+
+      x.font = `700 ${fs - 2}px "PingFang TC","Noto Sans TC",sans-serif`;
+      x.fillStyle = it.price ? '#2dd4bf' : '#8b949e';
+      x.fillText(it.price ? money(it.price) : '私訊報價', px + 12, py + cellH - 16);
+      x.restore();
+    });
+
+    // 空格填「更多」
+    const cells = cols * rows;
+    for (let n = picked.length; n < cells; n++) {
+      const r = Math.floor(n / cols);
+      const col = n % cols;
+      const px = PAD + col * (cellW + GAP);
+      const py = offY + r * (cellH + GAP);
+      x.save();
+      roundRectPath(x, px, py, cellW, cellH, 16);
+      x.clip();
+      x.fillStyle = '#161b22';
+      x.fillRect(px, py, cellW, cellH);
+      x.strokeStyle = '#2d333b';
+      x.lineWidth = 2;
+      roundRectPath(x, px + 1, py + 1, cellW - 2, cellH - 2, 15);
+      x.stroke();
+      x.fillStyle = '#4a525c';
+      x.font = '400 34px sans-serif';
+      x.textAlign = 'center';
+      x.fillText('＋', px + cellW / 2, py + cellH / 2 - 6);
+      x.font = '400 18px "PingFang TC","Noto Sans TC",sans-serif';
+      x.fillText('更多品項', px + cellW / 2, py + cellH / 2 + 28);
+      x.fillText('私訊詢問', px + cellW / 2, py + cellH / 2 + 52);
+      x.textAlign = 'left';
+      x.restore();
+    }
+  }
+
+  // 頁尾
+  x.fillStyle = '#2d333b';
+  x.fillRect(PAD, 1216, W - PAD * 2, 2);
+  x.fillStyle = '#e6edf3';
+  x.font = '700 30px "PingFang TC","Noto Sans TC",sans-serif';
+  x.fillText('宜蘭倉庫 · 可自取 · 可協助運送', PAD, 1272);
+  x.fillStyle = '#8b949e';
+  x.font = '400 24px "PingFang TC","Noto Sans TC",sans-serif';
+  x.fillText('私訊洽詢 · 可現場看貨試機', PAD, 1312);
+
+  return c;
+}
+
+async function renderCollage() {
+  const hint = $('#postHint');
+  if (!postItems().length) return toast(hint, '請先選至少一項商品');
+  toast(hint, '🖼 產生中…');
+  const c = await drawCollage();
+  const dst = $('#postCanvas');
+  dst.width = c.width;
+  dst.height = c.height;
+  dst.getContext('2d').drawImage(c, 0, 0);
+  toast(hint, '✅ 拼圖好了，按「⬇ 下載」');
+}
+
+async function downloadCollage() {
+  const hint = $('#postHint');
+  if (!postItems().length) return toast(hint, '請先選至少一項商品');
+  const c = await drawCollage();
+  const g = groupById(state.postGroupId);
+  const tag = g ? g.name.slice(0, 12) : '社團';
+  c.toBlob((b) => download(b, `發文拼圖_${tag}_${new Date().toISOString().slice(0, 10)}.png`), 'image/png');
+  toast(hint, '✅ 拼圖已下載，去社團貼上');
+}
+
+/* ---------- 發文記錄 ---------- */
+function markPosted() {
+  const hint = $('#postHint');
+  const g = groupById(state.postGroupId);
+  if (!g) return toast(hint, '請先選社團');
+  const picked = postItems();
+  if (!picked.length) return toast(hint, '請先選至少一項商品');
+  state.posts.unshift({
+    id: uid(),
+    groupKey: groupKey(g),
+    groupName: g.name,
+    itemIds: picked.map((i) => i.id),
+    itemNames: picked.map((i) => i.name),
+    style: state.postStyle,
+    text: $('#postText').value,
+    at: new Date().toISOString(),
+  });
+  writeLS(K.post, state.posts);
+  renderGroups();
+  renderPostGroups();
+  toast(hint, `✅ 已記錄：${g.name.slice(0, 16)}…（${picked.length} 項）`);
+}
+
+function nextGroup() {
+  const sorted = [...state.groups].sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99));
+  const i = sorted.findIndex((g) => groupKey(g) === state.postGroupId);
+  const nx = sorted[(i + 1) % sorted.length];
+  if (!nx) return;
+  state.postGroupId = groupKey(nx);
+  renderPostGroups();
+  $('#postGroup').value = state.postGroupId;
+  syncPostGroupLink();
+  toast($('#postHint'), `→ 換到：${nx.name.slice(0, 20)}…`);
 }
 
 /* ================= 回覆範本 ================= */
@@ -1010,6 +1546,7 @@ async function init() {
   state.packages = readLS(K.pkg, []);
   state.buyers = readLS(K.buyer, []);
   state.sellers = readLS(K.seller, []);
+  state.posts = readLS(K.post, []);
 
   const [inv, groups, sites, replies] = await Promise.all([
     fetch('data/inventory.json').then((r) => r.json()).catch(() => ({ items: [] })),
@@ -1062,7 +1599,7 @@ async function init() {
   });
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    ['#modal', '#pkgModal', '#buyerModal', '#sellerModal', '#dmModal'].forEach((s) => {
+    ['#modal', '#pkgModal', '#buyerModal', '#sellerModal', '#dmModal', '#postModal'].forEach((s) => {
       if (!$(s).hidden) {
         $(s).hidden = true;
         document.body.style.overflow = '';
@@ -1251,6 +1788,47 @@ async function init() {
   });
   $('#copyPost').addEventListener('click', () => copyText($('#postText').value, $('#copyHint')));
   $('#editPost').addEventListener('click', () => $('#postText').focus());
+
+  /* ---------- 發文產生器 ---------- */
+  $('#stockPost').addEventListener('click', () => openPost(''));
+  $('#postClose').addEventListener('click', closePost);
+  $('#postModal').addEventListener('click', (e) => {
+    if (e.target.id === 'postModal') closePost();
+  });
+  $('#postGroup').addEventListener('change', (e) => {
+    state.postGroupId = e.target.value;
+    syncPostGroupLink();
+  });
+  $('#postPicker').addEventListener('click', (e) => {
+    const card = e.target.closest('.post-pick');
+    if (!card) return;
+    const id = card.dataset.id;
+    const i = state.postPicked.indexOf(id);
+    if (i >= 0) state.postPicked.splice(i, 1);
+    else {
+      if (state.postPicked.length >= 9) return toast($('#postHint'), '拼圖最多 9 項，先取消一項');
+      state.postPicked.push(id);
+    }
+    card.classList.toggle('on', state.postPicked.includes(id));
+    regenPost();
+  });
+  $('#postStyles').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-style]');
+    if (!b) return;
+    state.postStyle = b.dataset.style;
+    renderPostStyles();
+    regenPost();
+  });
+  $('#postCopy').addEventListener('click', () => copyText($('#postText').value, $('#postHint')));
+  $('#postRegen').addEventListener('click', () => {
+    state.postVariant++;
+    regenPost();
+    toast($('#postHint'), '🔄 換一種說法（避免多社團貼一樣被 FB 判定重複）');
+  });
+  $('#postDraw').addEventListener('click', renderCollage);
+  $('#postDownload').addEventListener('click', downloadCollage);
+  $('#postDone').addEventListener('click', markPosted);
+  $('#postNext').addEventListener('click', nextGroup);
 
   $('#dirSearch').addEventListener('input', (e) => {
     state.dirQ = e.target.value;

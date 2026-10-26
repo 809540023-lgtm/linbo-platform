@@ -299,3 +299,48 @@ footer code { background: var(--bg2); padding: 1px 6px; border-radius: 5px; font
 .badge.m-hot { background: #f8514922; color: #ff7b72; }
 .badge.m-warm { background: #f0b42922; color: var(--warn); }
 .badge.m-cold { background: #8b949e22; color: var(--dim); }
+
+/* ---------- 發文產生器 ---------- */
+.modal-card.wide { max-width: 1000px; }
+.post-target { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 14px; flex-wrap: wrap; }
+.post-target label { flex: 1; min-width: 220px; font-size: 12px; color: var(--dim); }
+.post-target select {
+  width: 100%; margin-top: 4px; background: var(--bg); color: var(--fg);
+  border: 1px solid var(--line); border-radius: 9px; padding: 8px 10px;
+  font-size: 14px; font-family: inherit;
+}
+.post-picker {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 8px;
+  max-height: 330px; overflow-y: auto; border: 1px solid var(--line);
+  border-radius: 10px; padding: 8px; background: var(--bg); margin-bottom: 14px;
+}
+.post-pick {
+  position: relative; border: 2px solid var(--line); border-radius: 10px;
+  overflow: hidden; cursor: pointer; background: var(--card); transition: border-color .12s;
+}
+.post-pick:hover { border-color: #3d444d; }
+.post-pick.on { border-color: var(--accent); }
+.post-pick img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: #0b0f14; }
+.post-pick .pp-noimg { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; color: #4a525c; font-size: 22px; }
+.post-pick .pp-body { padding: 6px 8px 8px; }
+.post-pick .pp-name {
+  font-size: 12px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden; min-height: 32px;
+}
+.post-pick .pp-price { font-size: 11.5px; color: var(--accent); font-weight: 700; margin-top: 2px; }
+.post-pick .pp-price.none { color: var(--dim); font-weight: 400; }
+.post-pick .pp-tick {
+  position: absolute; top: 6px; right: 6px; width: 22px; height: 22px; border-radius: 50%;
+  background: #000000aa; border: 1px solid #ffffff44; display: flex; align-items: center;
+  justify-content: center; font-size: 12px; color: transparent; line-height: 1;
+}
+.post-pick.on .pp-tick { background: var(--accent); color: #06231f; border-color: var(--accent); }
+.post-styles { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.post-img { margin-bottom: 14px; }
+.post-canvas-wrap {
+  background: #000; border: 1px solid var(--line); border-radius: 10px;
+  padding: 8px; display: flex; justify-content: center;
+}
+.post-canvas-wrap canvas { max-width: 100%; height: auto; border-radius: 6px; display: block; }
+.badge.posted { background: #58a6ff22; color: #58a6ff; }
+.group-actions { display: flex; gap: 6px; flex: 0 0 auto; align-items: center; }
